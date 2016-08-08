@@ -58,6 +58,7 @@ For this to be a tutorial, we're going to need an actual project with actual cod
 
 So, after thinking for a bit about it, I decided to come up with as simple a project as I could that actually did something, perhaps even something useful, which is `polygons.py`, the listing of which is found below.
 
+```python
     import math
 
     class RegularPolygon():
@@ -92,6 +93,7 @@ So, after thinking for a bit about it, I decided to come up with as simple a pro
 
     square = Square(10)
     print('square: ' + str(square.area))
+```
 
 Yes, it's fairly trivial, but we have something that at least looks like a real project, and it's something we can test, which will be useful later. The idea will be similar to what I was planning with the comic book archive library/command line tool/GUI app. We have some code here that performs a needed result, in this case, calculating the area of a regular polygon. We'll first translate that into a library that anyone else could use on PyPI. Then we'll create a command line tool and a GUI app, both of which will use that library.
 
