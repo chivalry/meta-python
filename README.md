@@ -43,6 +43,10 @@ This isn't perfect, because each developer would have a different order of prior
 
 However, there will be a lot of material I'll leave out. There won't be much in the way of Python syntax, and there won't be much more than links while covering the initial tools (Python itself, text editing, Git and GitHub, and virtual environments). I'm honestly hesitant to even include those beginning chapters, but it seems necessary in order to be complete. While I could see leaving them out, a few weeks ago I would have needed at least the details about virtual environments, and someone else might need the details starting a little bit earlier.
 
+Finally, this will be an opinionated tutorial. I'm not going to give weigh the benefits of Python 2 versus Python 3. I've chosen Python 3. I've chosen macOS for my system, GitUp for git, Vim for text editing, pytest for testing, etc. I *may* provide links to other options, but for the most part, if you choose other tools, you'll need to look elsewhere for assistance.
+
+NOTE: If other contributors would like to fill in the details for these other options, I'd welcome the assistance.
+
 `if not Assumptions:`
 ---------------------
 
