@@ -87,14 +87,13 @@ So, after thinking for a bit about it, I decided to come up with as simple a pro
         def area(self):
             return self.length ** 2
 
-    if __name__ == '__main__':
-        hexagon = RegularPolygon(6, 10)
-        print('hexagon: ' + str(hexagon.area))
+    hexagon = RegularPolygon(6, 10)
+    print('hexagon: ' + str(hexagon.area))
 
-        square = Square(10)
-        print('square: ' + str(square.area))
+    square = Square(10)
+    print('square: ' + str(square.area))
 
-Yes, it's fairly trivial, but we have something that at least looks like a real project, and it's something we can test, which will be useful later.
+Yes, it's fairly trivial, but we have something that at least looks like a real project, and it's something we can test, which will be useful later. The idea will be similar to what I was planning with the comic book archive library/command line tool/GUI app. We have some code here that performs a needed result, in this case, calculating the area of a regular polygon. We'll first translate that into a library that anyone else could use on PyPI. Then we'll create a command line tool and a GUI app, both of which will use that library.
 
 Git(Hub)
 ========

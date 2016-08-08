@@ -27,9 +27,8 @@ class Square(RegularPolygon):
     def area(self):
         return self.length ** 2
 
-if __name__ == '__main__':
-    hexagon = RegularPolygon(6, 10)
-    print('hexagon: ' + str(hexagon.area))
+hexagon = RegularPolygon(6, 10)
+print('hexagon: ' + str(hexagon.area))
 
-    square = Square(10)
-    print('square: ' + str(square.area))
+square = Square(10)
+print('square: ' + str(square.area))
