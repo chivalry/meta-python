@@ -6,4 +6,4 @@ Modules
 
 [Next: Packages][1]
 
-[1]: ch_07_packages.md 'Chapter 7: Packages'
+[1]: ch_04_packages.md 'Chapter 7: Packages'

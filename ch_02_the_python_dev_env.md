@@ -78,13 +78,13 @@ Putting the Pieces Together
 
 
 
-[Next: Text Editing][5]
+[Next: Modules][5]
 
 [1]: http://www.diveintopython3.net/installing-python.html#windows 'Installing Python on Windows'
 [2]: http://brew.sh/ 'Homebrew'
 [3]: http://tutsplus.com/authors/bruno-skvorc 'Bruno Skvorc'
 [4]: http://computers.tutsplus.com/tutorials/homebrew-demystified-os-xs-ultimate-package-manager--mac-44884 'Homebrew Demystified'
-[5]: ch_03_text_editing.md 'Chapter 3: Text Editing'
+[5]: ch_03_modules.md 'Chapter 3: Text Editing'
 [6]: https://www.safaribooksonline.com/blog/2014/03/18/keeping-homebrew-date/ 'Keeping Your Homebrew Up to Date'
 [7]: http://www.skotos.net/about/staff/shannon_appelcline.php 'About Shannon Appelcline'
 [8]: http://www.vim.org/ 'Vim'
