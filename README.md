@@ -11,7 +11,7 @@ The trouble, for me at least, was that all of these concepts were very intertwin
 
 Uh-oh. That sounds like a new itch.
 
-This is me scratching that new itch. This is going to be the book/tutorial that I wish already existed. With that in mind, as I write this introduction, I don't know most of the topics I plan to have this book cover. I'm quite familiar with the first few sections, mostly because they are language-independent. But the further down you get in the outline/table of contents, the less I know. So this will be, at least as I get to those later sections, part tutorial and part journal.
+This is me scratching that new itch. This is going to be the book/tutorial that I wish already existed. With that in mind, as I write this introduction, I don't know most of the topics I plan to cover. I'm quite familiar with the first few sections, mostly because they are useful tools independent of Python. But the further down you get in the outline/table of contents, the less I know. So this will be, at least as I get to those later sections, part tutorial and part journal.
 
 With that in mind, the goal of this book is that by the time you finish reading it (and by the time I finish writing it), you and I will both be able to write a Python package for distribution that others can use with the existing Python community infrastructure.
 
@@ -26,7 +26,7 @@ As mentioned above, this is the book I wish I had right now. Therefore, my assum
 - You're comfortable with your operating systems' command line interface.
 - You're smart. I expect much of this will be my outlining the reasons a particular tool or process is a good idea and advising you to take advantage of it, with perhaps a link or Terminal listing to move you in the right direction. But if I say something like, "Create a new account on GitHub," you don't need step-by-step instructions here.
 
-One more assumption that may be true about you but not me. I've been using Macs for nearly 30 years, but Python is also available for Linux and Windows. I'm writing this from a Mac-user's perspective (it's *my* itch, after all). So, my further assumption is, if you're not a Mac user, you're smart enough to translate any Mac-specific statements to what works on your platform.
+One more assumption that may be true about me but not you. I've been using Macs for nearly 30 years, but Python is also available for Linux and Windows. I'm writing this from a Mac-user's perspective (it's *my* itch, after all). So, my further assumption is, if you're not a Mac user, you're smart enough to translate any Mac-specific statements to what works on your platform. When I give Mac-only instructions for something, I will try to provide links to the equivalent instructions for Linux and Windows.
 
 Structure
 ---------
@@ -37,9 +37,11 @@ One could cover all of the Python syntax stuff first, including modules, package
 
 Another order of teaching might be something I've seen a few times. "Here's a Python project folder structure and here's why it's the way it is." I've found these useful, but they already exist, and I don't think we need another one.
 
-Instead, I'll be going in the order which one would likely use to build an actual project. First thing a developer would probably do after having an idea would be to create a git repository, and once that's done, create a virtual environment, and then open a text editor, so those are the first three items I'll cover. Through each section, however, I'll try to concentrate first on what problem is being solved and how each tool or procedure solves that problem.
+Instead, I'll be going in the order which one would likely use to build an actual project. Nothing can be done until Python is installed, so that's (very quickly) covered first. A Developer would probably a git repository once they've had their initial idea, and once that's done, create a virtual environment, and then open a text editor, so those are the first three items I'll cover. Through each section, however, I'll try to concentrate first on what problem is being solved and how each tool or procedure solves that problem.
 
 This isn't perfect, because each developer would have a different order of priority. Heck, I've already broken this (as you'll soon see) by having an initial simple file before I create the repository or create the virtual environment. But the overall goal will be to cover material in the order one would come across it in an actual project.
+
+However, there will be a lot of material I'll leave out. There won't be much in the way of Python syntax, and there won't be much more than links while covering the initial tools (Python itself, text editing, Git and GitHub, and virtual environments). I'm honestly hesitant to even include those beginning chapters, but it seems necessary in order to be complete. While I could see leaving them out, a few weeks ago I would have needed at least the details about virtual environments, and someone else might need the details starting a little bit earlier.
 
 `if not Assumptions:`
 ---------------------
@@ -48,7 +50,7 @@ I think that if you've read this far, most of the above assumptions are true, bu
 
 - [Dive Into Python 3][2]: Good place to learn the syntax and a bit of meta Python
 - [The Hitchhiker's Guide to Python][3]: More meta Python, and a primary resource for this project
-- [#python][4] at [freenode.net][5]: Very helpful and very smart Python people hang out here to assist you.
+- [#python][4] at [freenode.net][5]: Very helpful and very smart Python people hang out here to assist you. I use [Colloquey][8] as my IRC client, but there are [many others][9] for all platforms.
 - [Stackoverflow][6]: Probably the very best forum for asking programming questions.
 
 Acknowledgements
@@ -67,3 +69,5 @@ Acknowledgements
 [5]: http://freenode.net/ 'freenode.net'
 [6]: http://stackoverflow.com/ 'Stackoverflow'
 [7]: ch_01_a_simple_project.md 'Chapter 1: A Simple Project'
+[8]: http://colloquy.info/ 'Colloquy Home'
+[9]: https://en.wikipedia.org/wiki/Comparison_of_Internet_Relay_Chat_clients 'Comparison of IRC clients'
