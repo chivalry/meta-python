@@ -20,7 +20,7 @@ Periodically, you'll want to run `brew update` and `brew upgrade python3`. Homeb
 Text Editing
 ------------
 
-While I doubt that I need to mention this, writing Python requires a text editor and although it probably won't make a difference to the rest of this material, I use [Vim][8] for all of text editing. If you haven't yet chosen a text editor, I can't recommend Vim enough.
+While I doubt that I need to mention this, writing Python requires a text editor and although it probably won't make a difference to the rest of this material, I use [Vim][8] for all of my text editing. If you haven't yet chosen a text editor, I can't recommend Vim enough.
 
 - It's designed with the programmer in mind and allows you to keep you fingers on the keyboard for everything, no menus or pointer moving required.
 - It's available for every platform, and regardless of whether chosen macOS, Linux or Windows, there will come a time when you need to use something else, such as when you need to SSH into a server. Vim is installed by default on macOS and Linux and can be easily added to Windows.
@@ -74,6 +74,7 @@ Virtual Environments
 [9]: https://github.com/chivalry/vimrc/tree/master/.vim/bundle 'My own list of installed Vim plugins'
 [10]: http://stevelosh.com/blog/2011/09/writing-vim-plugins/ 'Writing Vim Plugins'
 [11]: https://www.jetbrains.com/pycharm/download/ 'PyCharm IDE'
+[12]: http://www.makeuseof.com/tag/author/jbruce/ 'James Bruce'
 [13]: http://www.makeuseof.com/tag/git-version-control-youre-developer/ 'What Is Git & Why You Should Use Version Control If You’re a Developer'
 [14]: http://kbroman.org/ 'Karl Broman'
 [15]: http://kbroman.org/github_tutorial/pages/why.html 'Why git and github?'
