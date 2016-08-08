@@ -48,8 +48,8 @@ However, there will be a lot of material I'll leave out. There won't be much in 
 
 I think that if you've read this far, most of the above assumptions are true, but if you don't already know Python, I can recommend a few resources that I found helpful:
 
-- [Dive Into Python 3][2]: Good place to learn the syntax and a bit of meta Python
-- [The Hitchhiker's Guide to Python][3]: More meta Python, and a primary resource for this project
+- [Dive Into Python 3][2]: This is a good place to learn the syntax and a bit of meta Python.
+- [The Hitchhiker's Guide to Python][3]: Here you'll find more meta Python, and a primary resource for this project.
 - [#python][4] at [freenode.net][5]: Very helpful and very smart Python people hang out here to assist you. I use [Colloquey][8] as my IRC client, but there are [many others][9] for all platforms.
 - [Stackoverflow][6]: Probably the very best forum for asking programming questions.
 
