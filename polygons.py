@@ -1,6 +1,6 @@
 import math
 
-class RegularPolygon():
+class RegularPolygon:
     def __init__(self, sides, length):
         self.sides = sides
         self.length = length

@@ -54,6 +54,10 @@ I think that if you've read this far, most of the above assumptions are true, bu
 Acknowledgements
 ----------------
 
+- The helpful participants of #python on freenode.net, especially:
+    - RoadrunnerWMC
+    - malinoff
+
 A Simple Project
 ================
 
@@ -64,7 +68,7 @@ So, after thinking for a bit about it, I decided to come up with as simple a pro
 ```python
 import math
 
-class RegularPolygon():
+class RegularPolygon:
     def __init__(self, sides, length):
         self.sides = sides
         self.length = length
