@@ -103,8 +103,8 @@ print('square: ' + str(square.area))
 
 Yes, it's fairly trivial, but we have something that at least looks like a real project, and it's something we can test, which will be useful later. The idea will be similar to what I was planning with the comic book archive library/command line tool/GUI app. We have some code here that performs a needed result, in this case, calculating the area of a regular polygon. We'll first translate that into a library that anyone else could use on PyPI. Then we'll create a command line tool and a GUI app, both of which will use that library.
 
-Python 3.5
-==========
+The Python Development Environment
+==================================
 
 Mac-specific content coming now. Apple's macOS is Unix, so it includes Python by default. Unfortunately, Apple doesn't include the latest version, not by a long shot. As you probably know, Python currently has two, what shall we call them, tracks. Python 2 and Python 3. The latest version of macOS, 10.11 El Capitan, ships with Python 2.7 while the latest version is 3.5.2.
 
@@ -114,6 +114,12 @@ The easiest procedure for getting Python 3.5.2 is to use Homebrew, a package man
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 $ brew install python3
 ```
+
+Periodically, you'll want to run `brew update` and `brew upgrade python3`. Homebrew is a great system for Unixy software that Apple either neglected to include or included earlier versions as well as software libraries that might be useful. If you're unfamiliar with it, I highly suggest that you look into it beyond its utility for Python.
+
+- Python 3
+- Git
+- pip
 
 Git(Hub)
 ========
@@ -136,12 +142,11 @@ While Git itself is a command line program, there are plenty of GUI apps availab
 Keeping Up to Date
 ------------------
 
+Like Python, Apple includes Git with macOS, but, like Python, it's an older version, in this case, 2.6.4 whereas Git is up to 2.7.4. Homebrew is again the solution.
 
-- What does version control solve?
-- Why git?
-- Why GitHub?
-- Creating repository.
-- GUI apps
+```bash
+$ brew install git
+```
 
 Virtual Environments
 ====================
