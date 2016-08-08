@@ -28,6 +28,19 @@ As mentioned above, this is the book I wish I had right now. Therefore, my assum
 
 One more assumption that may be true about you but not me. I've been using Macs for nearly 30 years, but Python is also available for Linux and Windows. I'm writing this from a Mac-user's perspective (it's *my* itch, after all). So, my further assumption is, if you're not a Mac user, you're smart enough to translate any Mac-specific statements to what works on your platform.
 
+Structure
+---------
+
+I can imagine at least three ways to cover this material.
+
+One could cover all of the Python syntax stuff first, including modules, packages, etc. This could be followed by Python non-syntax material, such as `unittest` and `setuptools`.The last portion would cover non-Python material, such as using git and GitHub and text editing. This isn't using that order. I think there are plenty of resources that allow anyone to follow this type of order by simply covering each topic individually.
+
+Another order of teaching might be something I've seen a few times. "Here's a Python project folder structure and here's why it's the way it is." I've found these useful (and will find a place to thank those who've offered such material), but they already exist, and I don't think we need another one.
+
+Instead, I'll be going in the order which one would likely use to build an actual project. First thing a developer would probably do after having an idea would be to create a git repository, and once that's done, create a virtual environment, and then open a text editor, so those are the first three items I'll cover.
+
+This isn't perfect, because each developer would have a different order of priority. Heck, I've already broken this (as you'll soon see) by having an initial simple file before I create the repository or create the virtual environment. But the overall goal will be to cover material in the order one would come across it in an actual project.
+
 `if not Assumptions:`
 ---------------------
 
@@ -86,11 +99,11 @@ Yes, it's fairly trivial, but we have something that at least looks like a real 
 Git(Hub)
 ========
 
-Editing
-=======
-
 Virtual Environments
 ====================
+
+Editing
+=======
 
 Modules
 =======
