@@ -20,8 +20,7 @@ class RegularPolygon():
 
 class Square(RegularPolygon):
     def __init__(self, length):
-        self.length = length
-        self.sides = 4
+        super().__init__(4, length)
 
     @property
     def area(self):
