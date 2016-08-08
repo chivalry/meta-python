@@ -58,9 +58,12 @@ Acknowledgements
     - RoadrunnerWMC
     - malinoff
 
+[Next: A Simple Project][7]
+
 [1]: https://en.wikipedia.org/wiki/Comic_book_archive 'Comic Book Archive at Wikipedia'
 [2]: http://www.diveintopython3.net/ 'Dive Into Python 3'
 [3]: http://docs.python-guide.org/en/latest/ "The Hitchhiker's Guide to Python"
 [4]: https://www.python.org/community/irc/ "Python's IRC Community"
 [5]: http://freenode.net/ 'freenode.net'
 [6]: http://stackoverflow.com/ 'Stackoverflow'
+[7]: ch_02_a_simple_project.md 'Chapter 2: A Simple Project'
