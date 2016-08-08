@@ -12,7 +12,7 @@ $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/inst
 $ brew install python3
 ```
 
-Periodically, you'll want to run `brew update` and `brew upgrade python3`. Homebrew is a great system for Unixy software that Apple either neglected to include or included earlier versions as well as software libraries that might be useful. If you're unfamiliar with it, I highly suggest that you look into it beyond its utility for Python. A good place to start is [Bruno Skvorc's][3] [article][4].
+Periodically, you'll want to run `brew update` and `brew upgrade python3`. Homebrew is a great system for Unixy software that Apple either neglected to include or included earlier versions as well as software libraries that might be useful. If you're unfamiliar with it, I highly suggest that you look into it beyond its utility for Python. A good place to start is [Bruno Skvorc's][3] article [Homebrew Demystified][4], followed by [good advice][6] from [Shannon Appelcline][7].
 
 [Next: Text Editing][5]
 
@@ -21,3 +21,5 @@ Periodically, you'll want to run `brew update` and `brew upgrade python3`. Homeb
 [3]: http://tutsplus.com/authors/bruno-skvorc 'Bruno Skvorc'
 [4]: http://computers.tutsplus.com/tutorials/homebrew-demystified-os-xs-ultimate-package-manager--mac-44884 'Homebrew Demystified'
 [5]: ch_03_text_editing.md 'Chapter 3: Text Editing'
+[6]: https://www.safaribooksonline.com/blog/2014/03/18/keeping-homebrew-date/ 'Keeping Your Homebrew Up to Date'
+[7]: http://www.skotos.net/about/staff/shannon_appelcline.php 'About Shannon Appelcline'
