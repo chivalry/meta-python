@@ -59,6 +59,23 @@ As far as a GUI interface into Git, I've chosen [GitUp][16]. It's got a sparse i
 Virtual Environments
 --------------------
 
+Here we come to the first topic that I was unfamiliar with when I began this journey, which is probably why I'll go into a bit more detail now. If you're me, this is where you start actually needing assistance.
+
+First, the problem: The Python community is quite dynamic. Python itself is actively being developed with frequent updates, and there are hundreds of available libraries, which is great, because it severely reduces the likelihood that you'll have to reinvent the wheel for some solved problem. And these libraries are frequently updated, which is also great, because they get incrementally better, faster, and more bug free.
+
+Taking advantage of all this work that others have done, you create your Python program with Python 3.5.1 and [simplejson][17] 3.8.1. Everything is going smoothly as you build your software, but then you notice that Python 3.5.2 is out, and you want the latest and greatest Python, so you install it. And simplejson just added some features that sound interesting, so you update that too.
+
+OK, updates are finished, back to your own work. You run your tests before you do anything new and find your tests failing. Something's broken? But you haven't changed any of your code since the last time it worked.
+
+Yes, this is all contrived, but you get the point. Your program worked but something in one of those updates broke it. Going backwards to the versions that work with your program isn't exactly fun. Figuring out which one of them broke the software isn't fun either. And Python is supposed to be fun!
+
+This is the problem virtual environments solve. If you're familiar with Perl, Ruby or Haskel, you might be familiar with [`local::lib`][18], [`bundler`][19], or [sandboxes][20], respectively. Virtual environments provide the same feature in Python.
+
+The concept of virtual environments proved useful and popular enough that Python began including the [`venv`][21] module with version 3.3, so nothing need be done here given our prior installation of Python 3.5, but with an understanding of the utility and necessity of virtual environments, we can move forward.
+
+Putting the Pieces Together
+---------------------------
+
 
 
 [Next: Text Editing][5]
@@ -79,3 +96,8 @@ Virtual Environments
 [14]: http://kbroman.org/ 'Karl Broman'
 [15]: http://kbroman.org/github_tutorial/pages/why.html 'Why git and github?'
 [16]: http://gitup.co/ 'GitUp Home'
+[17]: https://pypi.python.org/pypi/simplejson/3.8.1 'simplejson'
+[18]: http://search.cpan.org/~haarg/local-lib-2.000019/lib/local/lib.pm 'local::lib'
+[19]: http://bundler.io/ 'Bundler'
+[20]: http://coldwa.st/e/blog/2013-08-20-Cabal-sandbox.html 'Cabal Sandboxes'
+[21]: https://docs.python.org/3/library/venv.html 'venv'

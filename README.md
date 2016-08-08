@@ -63,6 +63,8 @@ Acknowledgements
 - The helpful participants of #python on freenode.net, especially:
     - RoadrunnerWMC
     - malinoff
+    - _habnabit
+    - simpson
 
 [Next: A Simple Project][7]
 
