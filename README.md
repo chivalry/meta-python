@@ -29,6 +29,7 @@ As mentioned above, this is the book I wish I had right now. Therefore, my assum
 One more assumption that may be true about you but not me. I've been using Macs for nearly 30 years, but Python is also available for Linux and Windows. I'm writing this from a Mac-user's perspective (it's *my* itch, after all). So, my further assumption is, if you're not a Mac user, you're smart enough to translate any Mac-specific statements to what works on your platform.
 
 `if not Assumptions:`
+---------------------
 
 I think that if you've read this far, most of the above assumptions are true, but if you don't already know Python, I can recommend a few resources that I found helpful:
 
@@ -36,6 +37,51 @@ I think that if you've read this far, most of the above assumptions are true, bu
 - [The Hitchhiker's Guide to Python](http://docs.python-guide.org/en/latest/): More meta Python, and a primary resource for this project
 - [#python](https://www.python.org/community/irc/) at [freenode.net](http://freenode.net/): Very helpful and very smart Python people hang out here to assist you.
 - [Stackoverflow](http://stackoverflow.com/): Probably the very best forum for asking programming questions.
+
+A Simple Project
+================
+
+For this to be a tutorial, we're going to need an actual project with actual code that actually does something.  I've seen other tutorials of this sort work with `ModuleA` and `MyClass` with `a_function`, which is fine, but I find such names to be difficult to follow.
+
+So, after thinking for a bit about it, I decided to come up with as simple a project as I could that actually did something, perhaps even something useful, which is `polygons.py`, the listing of which is found below.
+
+    import math
+
+    class RegularPolygon():
+        def __init__(self, sides, length):
+            self.sides = sides
+            self.length = length
+
+        @property
+        def perimeter(self):
+            return self.sides * self.length
+
+        @property
+        def apothem(self):
+            tan = math.tan(math.pi / self.sides)
+            return self.length / (2 * tan)
+
+        @property
+        def area(self):
+            return (self.apothem * self.perimeter) / 2
+
+    class Square(RegularPolygon):
+        def __init__(self, length):
+            self.length = length
+            self.sides = 4
+
+        @property
+        def area(self):
+            return self.length ** 2
+
+    if __name__ == '__main__':
+        hexagon = RegularPolygon(6, 10)
+        print('hexagon: ' + str(hexagon.area))
+
+        square = Square(10)
+        print('square: ' + str(square.area))
+
+Yes, it's fairly trivial, but we have something that at least looks like a real project, and it's something we can test, which will be useful later.
 
 Git(Hub)
 ========

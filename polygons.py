@@ -1,0 +1,35 @@
+import math
+
+class RegularPolygon():
+    def __init__(self, sides, length):
+        self.sides = sides
+        self.length = length
+
+    @property
+    def perimeter(self):
+        return self.sides * self.length
+
+    @property
+    def apothem(self):
+        tan = math.tan(math.pi / self.sides)
+        return self.length / (2 * tan)
+
+    @property
+    def area(self):
+        return (self.apothem * self.perimeter) / 2
+
+class Square(RegularPolygon):
+    def __init__(self, length):
+        self.length = length
+        self.sides = 4
+
+    @property
+    def area(self):
+        return self.length ** 2
+
+if __name__ == '__main__':
+    hexagon = RegularPolygon(6, 10)
+    print('hexagon: ' + str(hexagon.area))
+
+    square = Square(10)
+    print('square: ' + str(square.area))
