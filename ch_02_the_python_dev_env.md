@@ -14,7 +14,10 @@ $ brew install python3
 
 Periodically, you'll want to run `brew update` and `brew upgrade python3`. Homebrew is a great system for Unixy software that Apple either neglected to include or included earlier versions as well as software libraries that might be useful. If you're unfamiliar with it, I highly suggest that you look into it beyond its utility for Python. A good place to start is [Bruno Skvorc's][3] [article][4].
 
+[Next: Text Editing][5]
+
 [1]: http://www.diveintopython3.net/installing-python.html#windows 'Installing Python on Windows'
 [2]: http://brew.sh/ 'Homebrew'
 [3]: http://tutsplus.com/authors/bruno-skvorc 'Bruno Skvorc'
 [4]: http://computers.tutsplus.com/tutorials/homebrew-demystified-os-xs-ultimate-package-manager--mac-44884 'Homebrew Demystified'
+[5]: ch_03_text_editing.md 'Chapter 3: Text Editing'

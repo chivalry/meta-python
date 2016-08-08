@@ -24,3 +24,7 @@ Like Python, Apple includes Git with macOS, but, like Python, it's an older vers
 ```bash
 $ brew install git
 ```
+
+[Next: Virtual Environments][1]
+
+[1]: ch_05_virtenv.md 'Chapter 5: Virtual Environments'
