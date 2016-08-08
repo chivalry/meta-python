@@ -43,4 +43,7 @@ print('square: ' + str(square.area))
 
 Yes, it's fairly trivial, but we have something that at least looks like a real project, and it's something we can test, which will be useful later. The idea will be similar to what I was planning with the comic book archive library/command line tool/GUI app. We have some code here that performs a needed result, in this case, calculating the area of a regular polygon. We'll first translate that into a library that anyone else could use on PyPI. Then we'll create a command line tool and a GUI app, both of which will use that library.
 
+[Next: The Python Development Environment][2]
+
 [1]: http://www.wikihow.com/Find-the-Area-of-Regular-Polygons "wikiHow's article on calculating the area of a regular polygon"
+[2]: ch_02_the_python_dev_env.md 'Chapter 2: The Python Development Environment'
