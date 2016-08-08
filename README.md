@@ -3,7 +3,7 @@ Introduction
 
 Over the last few months I've been delving deeper into Python. Generally I have trouble learning a language or technology unless I have a specific and real goal in mind while learning it. Then I had a client who needed a fairly simply text file transformation utility, and it seemed a good opportunity to learn Python. I was familiar enough with the basic syntax that writing the utility didn't require *too* much research, and I was able to use some of Python's powerful features to finish the utility in only about 50 lines of code and a few hours of work.
 
-Having enjoyed my experience with Python, I decided to go a bit deeper and scratch an itch of my own with the language. I'm a big comic book fan, have been for forty-plus years. The most popular format for digital comic books is the [Comic Book Archive](https://en.wikipedia.org/wiki/Comic_book_archive) format, which is really just an archive file (zip, rar, tar, etc.) with a specific extension (cbz, cbr, cbt, etc.). My itch is that I wanted a utility that will make it easy for me to create and manipulate these files.
+Having enjoyed my experience with Python, I decided to go a bit deeper and scratch an itch of my own with the language. I'm a big comic book fan, have been for forty-plus years. The most popular format for digital comic books is the [Comic Book Archive][1] format, which is really just an archive file (zip, rar, tar, etc.) with a specific extension (cbz, cbr, cbt, etc.). My itch is that I wanted a utility that will make it easy for me to create and manipulate these files.
 
 My plan was to create a library first, move from there to a command line utility and finally a GUI app, each a separate project, the latter two making use of the first. I haven't gotten there yet, although I'm still working on the project. But as I began writing code, I began to come across many Python concepts that, well, they sort of aren't Python. But that's not right. Some of the concepts *are* Python (modules and packages). Some of the concepts are Python but not Python syntax (testing, for example). Some of them aren't Python, so much as additions to Python, aimed not at enhancing the language, like Python's standard library, but at assisting the developer (virtual environments, setuptools).
 
@@ -46,10 +46,10 @@ This isn't perfect, because each developer would have a different order of prior
 
 I think that if you've read this far, most of the above assumptions are true, but if you don't already know Python, I can recommend a few resources that I found helpful:
 
-- [Dive Into Python 3](http://www.diveintopython3.net/): Good place to learn the syntax and a bit of meta Python
-- [The Hitchhiker's Guide to Python](http://docs.python-guide.org/en/latest/): More meta Python, and a primary resource for this project
-- [#python](https://www.python.org/community/irc/) at [freenode.net](http://freenode.net/): Very helpful and very smart Python people hang out here to assist you.
-- [Stackoverflow](http://stackoverflow.com/): Probably the very best forum for asking programming questions.
+- [Dive Into Python 3][2]: Good place to learn the syntax and a bit of meta Python
+- [The Hitchhiker's Guide to Python][3]: More meta Python, and a primary resource for this project
+- [#python][4] at [freenode.net][5]: Very helpful and very smart Python people hang out here to assist you.
+- [Stackoverflow][6]: Probably the very best forum for asking programming questions.
 
 Acknowledgements
 ----------------
@@ -57,3 +57,10 @@ Acknowledgements
 - The helpful participants of #python on freenode.net, especially:
     - RoadrunnerWMC
     - malinoff
+
+[1]: https://en.wikipedia.org/wiki/Comic_book_archive 'Comic Book Archive at Wikipedia'
+[2]: http://www.diveintopython3.net/ 'Dive Into Python 3'
+[3]: http://docs.python-guide.org/en/latest/ "The Hitchhiker's Guide to Python"
+[4]: https://www.python.org/community/irc/ "Python's IRC Community"
+[5]: http://freenode.net/
+[6]: http://stackoverflow.com/
