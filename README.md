@@ -56,7 +56,7 @@ A Simple Project
 
 For this to be a tutorial, we're going to need an actual project with actual code that actually does something.  I've seen other tutorials of this sort work with `ModuleA` and `MyClass` with `a_function`, which is fine, but I find such names to be difficult to follow.
 
-So, after thinking for a bit about it, I decided to come up with as simple a project as I could that actually did something, perhaps even something useful, which is `polygons.py`, the listing of which is found below.
+So, after thinking for a bit about it, I decided to come up with as simple a project as I could that actually did something, perhaps even something useful, which is `polygons.py` (with thanks to [wikiHow](http://www.wikihow.com/Find-the-Area-of-Regular-Polygons) for the math behind the algorithm), the listing of which is found below.
 
 ```python
 import math
