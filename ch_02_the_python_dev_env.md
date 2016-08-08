@@ -80,7 +80,7 @@ We've got Python 3 installed, have chosen a text editor, have Git and GitHub rea
 
 1. Go onto your GitHub account and create a new repository called `polygons`. Take advantage of GitHubs's automation and let the site create a README and a `.gitignore` for you targeted at Python projects.
 
-[![Creating the GitHub repository][22]]
+![Creating the GitHub repository][22]
 
 [Next: Modules][5]
 
