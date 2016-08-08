@@ -28,6 +28,16 @@ As mentioned above, this is the book I wish I had right now. Therefore, my assum
 
 One more assumption that may be true about me but not you. I've been using Macs for nearly 30 years, but Python is also available for Linux and Windows. I'm writing this from a Mac-user's perspective (it's *my* itch, after all). So, my further assumption is, if you're not a Mac user, you're smart enough to translate any Mac-specific statements to what works on your platform. When I give Mac-only instructions for something, I will try to provide links to the equivalent instructions for Linux and Windows.
 
+`if not Assumptions:`
+---------------------
+
+I think that if you've read this far, most of the above assumptions are true, but if you don't already know Python, I can recommend a few resources that I found helpful:
+
+- [Dive Into Python 3][2]: This is a good place to learn the syntax and a bit of meta Python.
+- [The Hitchhiker's Guide to Python][3]: Here you'll find more meta Python, and a primary resource for this project.
+- [#python][4] at [freenode.net][5]: Very helpful and very smart Python people hang out here to assist you. I use [Colloquey][8] as my IRC client, but there are [many others][9] for all platforms.
+- [Stackoverflow][6]: Probably the very best forum for asking programming questions.
+
 Structure
 ---------
 
@@ -46,16 +56,6 @@ However, there will be a lot of material I'll leave out. There won't be much in 
 Finally, this will be an opinionated tutorial. I'm not going to give weigh the benefits of Python 2 versus Python 3. I've chosen Python 3. I've chosen macOS for my system, GitUp for git, Vim for text editing, pytest for testing, etc. I *may* provide links to other options, but for the most part, if you choose other tools, you'll need to look elsewhere for assistance.
 
 > NOTE: If other contributors would like to fill in the details for these other options, I'd welcome the assistance.
-
-`if not Assumptions:`
----------------------
-
-I think that if you've read this far, most of the above assumptions are true, but if you don't already know Python, I can recommend a few resources that I found helpful:
-
-- [Dive Into Python 3][2]: This is a good place to learn the syntax and a bit of meta Python.
-- [The Hitchhiker's Guide to Python][3]: Here you'll find more meta Python, and a primary resource for this project.
-- [#python][4] at [freenode.net][5]: Very helpful and very smart Python people hang out here to assist you. I use [Colloquey][8] as my IRC client, but there are [many others][9] for all platforms.
-- [Stackoverflow][6]: Probably the very best forum for asking programming questions.
 
 Acknowledgements
 ----------------
