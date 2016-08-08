@@ -35,9 +35,9 @@ I can imagine at least three ways to cover this material.
 
 One could cover all of the Python syntax stuff first, including modules, packages, etc. This could be followed by Python non-syntax material, such as `unittest` and `setuptools`.The last portion would cover non-Python material, such as using git and GitHub and text editing. This isn't using that order. I think there are plenty of resources that allow anyone to follow this type of order by simply covering each topic individually.
 
-Another order of teaching might be something I've seen a few times. "Here's a Python project folder structure and here's why it's the way it is." I've found these useful (and will find a place to thank those who've offered such material), but they already exist, and I don't think we need another one.
+Another order of teaching might be something I've seen a few times. "Here's a Python project folder structure and here's why it's the way it is." I've found these useful, but they already exist, and I don't think we need another one.
 
-Instead, I'll be going in the order which one would likely use to build an actual project. First thing a developer would probably do after having an idea would be to create a git repository, and once that's done, create a virtual environment, and then open a text editor, so those are the first three items I'll cover.
+Instead, I'll be going in the order which one would likely use to build an actual project. First thing a developer would probably do after having an idea would be to create a git repository, and once that's done, create a virtual environment, and then open a text editor, so those are the first three items I'll cover. Through each section, however, I'll try to concentrate first on what problem is being solved and how each tool or procedure solves that problem.
 
 This isn't perfect, because each developer would have a different order of priority. Heck, I've already broken this (as you'll soon see) by having an initial simple file before I create the repository or create the virtual environment. But the overall goal will be to cover material in the order one would come across it in an actual project.
 
@@ -50,6 +50,9 @@ I think that if you've read this far, most of the above assumptions are true, bu
 - [The Hitchhiker's Guide to Python](http://docs.python-guide.org/en/latest/): More meta Python, and a primary resource for this project
 - [#python](https://www.python.org/community/irc/) at [freenode.net](http://freenode.net/): Very helpful and very smart Python people hang out here to assist you.
 - [Stackoverflow](http://stackoverflow.com/): Probably the very best forum for asking programming questions.
+
+Acknowledgements
+----------------
 
 A Simple Project
 ================
@@ -99,20 +102,39 @@ Yes, it's fairly trivial, but we have something that at least looks like a real 
 Git(Hub)
 ========
 
+- What does version control solve?
+- Why git?
+- Why GitHub?
+- Creating repository.
+- GUI apps
+
 Virtual Environments
 ====================
+
+- What do virtual environments solve?
+- Which virtual environment?
+- Setup instructions
 
 Editing
 =======
 
+- You already use a text editor, right?
+- I use Vim
+- Vim and Python
+- Other options
+
 Modules
 =======
+
+- We already have a module
+- Making module explicit
 
 Packages
 ========
 
-Documentation
-=============
+- Package, package or package?
+- The simplest package
+- More useful package
 
 Testing
 =======
@@ -120,14 +142,27 @@ Testing
 Unit
 ----
 
+- pytest
+- What to test
+
 Coverage
 --------
+
+- Include this?
+
+Documentation
+=============
+
+- __doc__
+- Generated documentation
 
 Distribution
 ============
 
 License
 -------
+
+- MIT
 
 Readme
 ------
@@ -138,6 +173,8 @@ Version
 Makefile
 --------
 
+What does this solve?
+
 Requirements
 ------------
 
@@ -146,3 +183,9 @@ setuptools
 
 PyPI
 ----
+
+Command Line Tool
+=================
+
+GUI App
+=======
