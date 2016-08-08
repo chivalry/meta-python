@@ -62,5 +62,5 @@ Acknowledgements
 [2]: http://www.diveintopython3.net/ 'Dive Into Python 3'
 [3]: http://docs.python-guide.org/en/latest/ "The Hitchhiker's Guide to Python"
 [4]: https://www.python.org/community/irc/ "Python's IRC Community"
-[5]: http://freenode.net/
-[6]: http://stackoverflow.com/
+[5]: http://freenode.net/ 'freenode.net'
+[6]: http://stackoverflow.com/ 'Stackoverflow'
