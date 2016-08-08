@@ -66,4 +66,4 @@ Acknowledgements
 [4]: https://www.python.org/community/irc/ "Python's IRC Community"
 [5]: http://freenode.net/ 'freenode.net'
 [6]: http://stackoverflow.com/ 'Stackoverflow'
-[7]: ch_02_a_simple_project.md 'Chapter 2: A Simple Project'
+[7]: ch_01_a_simple_project.md 'Chapter 2: A Simple Project'
