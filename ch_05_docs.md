@@ -6,4 +6,4 @@ Documentation
 
 [Next: Distribution][1]
 
-[1]: ch_07_dist.md 'Chapter 10: Distribution'
+[1]: ch_06_dist.md 'Chapter 6: Distribution'

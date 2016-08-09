@@ -14,4 +14,4 @@ Coverage
 
 [Next: Documentation][1]
 
-[1]: ch_06_docs.md 'Chapter 9: Documentation'
+[1]: ch_05_docs.md 'Chapter 5: Documentation'
