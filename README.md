@@ -33,8 +33,11 @@ One more assumption that may be true about me but not you. I've been using Macs 
 
 I think that if you've read this far, most of the above assumptions are true, but if you don't already know Python, I can recommend a few resources that I found helpful:
 
-- [Dive Into Python 3][2]: This is a good place to learn the syntax and a bit of meta Python.
-- [The Hitchhiker's Guide to Python][3]: Here you'll find more meta Python, and a primary resource for this project.
+- The Python community is quite gracious with its publishing practices, and there are a few books that are freely available and quite helpful:
+    - [Dive Into Python 3][2]: This is a good place to learn the syntax and a bit of meta Python. I'd recommend this one to anyone who is already a programmer and wants to come up to speed with Python as quickly as possible.
+    - [The Hitchhiker's Guide to Python][3]: Here you'll find more meta Python, and a primary resource for this project.
+    - [Think Python][10]: This is the one I gave my son when he asked to learn programming. If you're new to programming in general, this one will teach Python and general programming at the same time.
+    - [A Byte of Python][11]: Another free and well-written introduction to both programming and Python simultaneously.
 - [#python][4] at [freenode.net][5]: Very helpful and very smart Python people hang out here to assist you. I use [Colloquey][8] as my IRC client, but there are [many others][9] for all platforms.
 - [Stackoverflow][6]: Probably the very best forum for asking programming questions.
 
@@ -47,13 +50,13 @@ One could cover all of the Python syntax stuff first, including modules, package
 
 Another order of teaching might be something I've seen a few times. "Here's a Python project folder structure and here's why it's the way it is." I've found these useful, but they already exist, and I don't think we need another one.
 
-Instead, I'll be going in the order which one would likely use to build an actual project. Nothing can be done until Python is installed, so that's (very quickly) covered first. A Developer would probably a git repository once they've had their initial idea, and once that's done, create a virtual environment, and then open a text editor, so those are the first three items I'll cover. Through each section, however, I'll try to concentrate first on what problem is being solved and how each tool or procedure solves that problem.
+Instead, I'll be going in the order which one would likely use to build an actual project. Nothing can be done until Python is installed, so that's (very quickly) covered first. A developer would probably create a git repository once they've had their initial idea, and once that's done, create a virtual environment, and then open a text editor, so those are the first three items I'll cover. Through each section, however, I'll try to concentrate first on what problem is being solved and how each tool or procedure solves that problem.
 
 This isn't perfect, because each developer would have a different order of priority. Heck, I've already broken this (as you'll soon see) by having an initial simple file before I create the repository or create the virtual environment. But the overall goal will be to cover material in the order one would come across it in an actual project.
 
 However, there will be a lot of material I'll leave out. There won't be much in the way of Python syntax, and there won't be much more than links while covering the initial tools (Python itself, text editing, Git and GitHub, and virtual environments). I'm honestly hesitant to even include those beginning chapters, but it seems necessary in order to be complete. While I could see leaving them out, a few weeks ago I would have needed at least the details about virtual environments, and someone else might need the details starting a little bit earlier.
 
-Finally, this will be an opinionated tutorial. I'm not going to give weigh the benefits of Python 2 versus Python 3. I've chosen Python 3. I've chosen macOS for my system, GitUp for git, Vim for text editing, pytest for testing, etc. I *may* provide links to other options, but for the most part, if you choose other tools, you'll need to look elsewhere for assistance.
+Finally, this will be an opinionated tutorial. I'm not going to weigh the benefits of Python 2 versus Python 3. I've chosen Python 3. I've chosen macOS for my system, GitUp for git, Vim for text editing, pytest for testing, etc. I *may* provide links to other options, but for the most part, if you choose other tools, you'll need to look elsewhere for assistance.
 
 > NOTE: If other contributors would like to fill in the details for these other options, I'd welcome the assistance.
 
@@ -65,6 +68,8 @@ Acknowledgements
     - malinoff
     - _habnabit
     - simpson
+    - yvear
+    - nedbat
 
 [Next: A Simple Project][7]
 
@@ -77,3 +82,5 @@ Acknowledgements
 [7]: ch_01_a_simple_project.md 'Chapter 1: A Simple Project'
 [8]: http://colloquy.info/ 'Colloquy Home'
 [9]: https://en.wikipedia.org/wiki/Comparison_of_Internet_Relay_Chat_clients 'Comparison of IRC clients'
+[10]: http://greenteapress.com/wp/think-python-2e/ 'Think Python'
+[11]: http://python.swaroopch.com/ 'A Byte of Python'

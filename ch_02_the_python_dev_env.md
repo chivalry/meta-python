@@ -78,13 +78,29 @@ Putting the Pieces Together
 
 We've got Python 3 installed, have chosen a text editor, have Git and GitHub ready, and know what virtual environments will do for us. Time to put it all together.
 
-1. Go onto your GitHub account and create a new repository called `polygons`. Take advantage of GitHubs's automation and let the site create a README and a `.gitignore` for you targeted at Python projects.
+1. Go onto your GitHub account and create a new repository called `polygons`. Take advantage of GitHub's automation and let the site create a README and a `.gitignore` for you targeted at Python projects. Use your preferred method of accessing Git to clone the repository to your local computer.
 
 ![Creating the GitHub repository][22]
 
-2. Once you have your new repository, use the "Clone or Download" popup menu to copy the repository's URL.
+2. Create `polygons.py` in the local repository with the contents shown from the [Chapter 1][23] and add it to the repository.
 
-![Get your repository's URL for cloning][23]
+3. `cd` into the repository directory and create a virtual environment with `pyvenv venv`. Here, I'm naming the virtual environment `venv`, so the `venv` module (accessed by the `pyvenv` command line tool) will create a `venv` directory. If you're interested in the details of what's *in* that directory, take a look at Real Python's article, [Python Virtual Environments - a Primer][24].
+
+> Tip: Yes, that's a lot of `venv`s (module, environment name, and directory). You can choose a different name, such as `pyvenv polygon-venv`, but I would suggest you always name your virtual environments the same thing, even if it's not `venv`. The reason is that to activate the virtual environment you need to enter a command of the form `source <virtual-environment-name>/bin/activate`. If you always have the virtual environment name be the same thing, you can create an alias in your `.bash_profile` or whatever file is executed when your shell starts up: `alias activate="source venv/bin/activate"`.
+
+<!-- separate sequential blockquotes -->
+> Note: If you let GitHub create a `.gitignore` for Python projects for you, and you named your virtual environment `venv`, you needn't worry about the environment's files being added to your repository, as `venv/` is included in GitHub's `.gitignore`. If you named it something else, you'll want to edit your `.gitignore` to exclude the virtual environment directory before you move forward.
+
+4. Add the `polygons.py` file using Git and push the updated repository to GitHub.
+
+![Our starting point][25]
+
+> Note: Yes, you *could* fork the repository I'm showing in these screenshots. Unless you're intimately familiar with how the above process works, __don't__. Do the steps yourself. Even type in the `polygons.py` code yourself. This will be the only time I give this advice. We're going to edit that file and many other files significantly. You'll get much more out of this process if you perform all of these steps yourself. I did.
+
+Conclusion
+----------
+
+We've accomplished quite a bit now. We've prepared our simple Python script to begin growing up so it can move out into the wide world. Next time we'll cover Python modules and packages (and lament the multiple definitions of "package" in the Python community).
 
 [Next: Modules][5]
 
@@ -110,4 +126,6 @@ We've got Python 3 installed, have chosen a text editor, have Git and GitHub rea
 [20]: http://coldwa.st/e/blog/2013-08-20-Cabal-sandbox.html 'Cabal Sandboxes'
 [21]: https://docs.python.org/3/library/venv.html 'venv'
 [22]: images/ch_02_fig_01.png 'Creating the GitHub repository'
-[23]: images/ch_02_fig_02.png "Get your repository's URL for cloning"
+[23]: ch_01_a_simple_project.md 'Chapter 1'
+[24]: https://realpython.com/blog/python/python-virtual-environments-a-primer/ 'Python Virtual Environments - a Primer'
+[25]: images/ch_02_fig_02.png 'Our starting point'
