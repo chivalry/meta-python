@@ -82,6 +82,10 @@ We've got Python 3 installed, have chosen a text editor, have Git and GitHub rea
 
 ![Creating the GitHub repository][22]
 
+2. Once you have your new repository, use the "Clone or Download" popup menu to copy the repository's URL.
+
+![Get your repository's URL for cloning][23]
+
 [Next: Modules][5]
 
 [1]: http://www.diveintopython3.net/installing-python.html#windows 'Installing Python on Windows'
@@ -106,3 +110,4 @@ We've got Python 3 installed, have chosen a text editor, have Git and GitHub rea
 [20]: http://coldwa.st/e/blog/2013-08-20-Cabal-sandbox.html 'Cabal Sandboxes'
 [21]: https://docs.python.org/3/library/venv.html 'venv'
 [22]: images/ch_02_fig_01.png 'Creating the GitHub repository'
+[23]: images/ch_02_fig_02.png "Get your repository's URL for cloning"
