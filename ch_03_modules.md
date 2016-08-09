@@ -6,7 +6,7 @@ Modules (and Packages)
 
 > REF: http://www.diveintopython3.net/packaging.html
 > REF: http://docs.python-guide.org/en/latest/shipping/packaging/
-> REF: https://packaging.python.org/key_projects/#setuptools
+> REF: http://docs.python-guide.org/en/latest/writing/structure/
 
 [Next: Packages][1]
 
