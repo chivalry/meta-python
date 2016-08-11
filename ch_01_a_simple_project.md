@@ -66,6 +66,10 @@ class Square(RegularPolygon):
     def area(self):
         return self.length ** 2
 
+    @property
+    def name(self):
+        return 'square'
+
 class EquilateralTriangle(RegularPolygon):
     def __init__(self, length:float):
         super().__init__(4, length)
@@ -73,6 +77,10 @@ class EquilateralTriangle(RegularPolygon):
     @property
     def area(self):
         return (self.length ** 2) * math.sqrt(3) / 4
+
+    @property
+    def name(self):
+        return 'equilateral triangle'
 
 hexagon = RegularPolygon(6, 10)
 print('hexagon area: ' + str(hexagon.area))
