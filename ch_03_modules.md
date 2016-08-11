@@ -126,13 +126,15 @@ Both `regularpolygon.py` and `equilateraltriangle.py` need the `math` library, t
 
 But now we need to think things through a bit. The `RegularPolygon` class inherits from `Polygon` and both `Square` and `EquilateralTriangle` inherit from `RegularPolygon`, but these files span two folders, so how do we tell the `regularpolygon.py` file where to find the `Polygon` class?
 
-Python uses a system similar to shell directory structures to indicate the current and parent modules. Just as `.` means the current directory and `..` means the parent directory within a command line shell, Python's import mechanism uses `.` to mean the current module and `..` the parent module.
+Python uses a system similar to shell directory structures to indicate the current and parent modules. Just as `.` means the current directory and `..` means the parent directory within a command line shell, Python's import mechanism uses `.` to mean the current module and `..` the parent module. This dot notation is called the "relative namespace."
 
 We have three modules: `polygons` (plural), `polygon` (singular), and `regularpolygon`, the latter two being sub-modules of the first, which is another way of saying that the first is the parent module of the latter two. So to navigate from the `regularpolygon` file to the `Polygon` class, we need to go up one module, then down into the `polygon` module, then into the `polygon` file/module. Add this below your `import math` in `regularpolygon.py`:
 
 ```python
 from ..polygon.polygon import Polygon
 ```
+
+You do not *have* to use relative namespaces. We could have used `from polygons.polygon.polygon import Polygon`, but doing so makes the structure more fragile. Should you ever decide later that the top-level module should be named something other than `polygons`, you'd then need to change all of the internal references to it that you've hardcoded.
 
 Similarly, both the `Square` and `EquilateralTriangle` classes inherit from `RegularPolygon`, which is in the `regularpolygon.py` file. In this case we go to the *current* module (indicated by a `.`), and from there into the `regularpolygon` module/file. Add this line to both `square.py` and `equilateraltriangle.py`:
 
@@ -168,10 +170,31 @@ print('square area: ' + str(Square(10).area))
 print('triangle area: ' + str(EquilateralTriangle(9).area))
 ```
 
+You may wonder why I didn't place these tests within each file's `if __name__…` block as I did with the original script. The reason is the relative namespaces we used above. Relative namespace only work when a file within a larger multi-file module is executed directly. Go ahead and try entering something like `python polygons/regularpolygon/square.py`. You'll get an import error because we're not using that file as part of the larger multi-file module and therefore the relative namespace won't work.
+
 We now have a complete multi-file module which our `test.py` file confirms works to give us the same functionality as our original script, but those `import`s sure are ugly. Let's take care of that next.
 
 Cleaning Up the Interface
 =========================
+
+I've repeated read that leaving `__init__.py` blank is a standard practice, and one can get things to work programmatically by doing so, but I consider the default interface into the module to be ugly, and the only way to get around that is to place some code in our various `__init__.py` files. The `import`s that navigate the module path above (i.e., `from polygons.polygon.polygon import Polygon`) are rather difficult to read and prone to error when typing. Ideally we'd like our module to have the following features:
+
+- `import polygons` gives us access to all of the submodules with their classes.
+- `import polygons` also allows us to refer to the classes by `module.submodule.Class`, without the extra reference to the file.
+- `from polygons import *` gives access to the classes with `submodule.Class`.
+- If we only need access to a single class, we can use something like `from polygons.polygon import Polygon`.
+
+What most of these actually have in common is the elimination of the filenames in the module paths. The exception is the ability to import all of the module's namespace. But all of this is accomplished by adding some code to the `__init__.py` files.
+
+While the presence of `__init__.py` within a folder does flag that folder as a module, any code that is in the file will get executed when the module gets imported.
+
+Try this: Edit the existing `polygons/__init__.py` to just have a line that says, `print('Hello from __init__.py')`. Then enter the Python interpreter and type `import polygons`.
+
+```
+>>> import polygons
+Hello from __init__.py
+>>> 
+```
 
 I'm rewriting this
 ==================
