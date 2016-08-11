@@ -1,7 +1,7 @@
 Modules (and Packages)
 ======================
 
-In simplest terms, a Python module is some code that can be loaded by Python and made available to other Python code. Our `polygons.py` file is already making use of a standard module, `math`, to gain access to the `tan` function and `pi` property.
+In simplest terms, a Python module is some code that can be loaded by Python and made available to other Python code. Our `polygons.py` file is already making use of a standard module, `math`, to gain access to the `tan` and `sqrt` functions and `pi` property.
 
 Strictly speaking, any Python file is a module. You can confirm this for yourself by opening the Python interpreter while in the `polygon` directory for the project.
 
@@ -11,28 +11,36 @@ polygons $ activate
 (venv) 
 polygons $ python
 >>> import polygons
-hexagon: 259.80762113533166
-square: 100
->>>quit()
+hexagon area: 259.80762113533166
+hexagon name: hexagon
+hexagon angles: [120.0, 120.0, 120.0, 120.0, 120.0, 120.0]
+square area: 100
+triangle area: 35.074028853269766
+>>> quit()
 (venv) 
 polygons $  
 ```
 
-> Note: Even if you're on macOS, your shell prompt may look a bit different from mine. I've customized by shell prompt to insert a blank line after each command as I find it easier to read. In case you're interested in how I did this, I have the following line in `~/.bash_profile`: `PS1="\n\W \$ "`. Once the virtual environment is activated, it temporarily edits the prompt to place the name of the virtual environment before the default prompt, so that while the virtual environment is active, `echo $PS1` returns `(venv) \n\w \$ `. This only happens for the current shell instance (so you won't see the different prompt if you create a new shell) and until you `deactivate` the virtual environment.
+> Note: Even if you're on macOS, your shell prompt may look a bit different from mine. I've customized by shell prompt to insert a blank line after each command as I find it easier to read. In case you're interested in how I did this, I have the following line in `~/.bash_profile`: `PS1="\n\W \$ "`. Once the virtual environment is activated, it temporarily edits the prompt to place the name of the virtual environment before the default prompt, so that while the virtual environment is active, `echo $PS1` returns `(venv) \n\w \$ `. This only happens for the current shell instance (so you won't see the different prompt if you create a new shell) and until you `deactivate` the virtual environment or close the current session.
 
-We can see that the `import` directive loaded the code in `polygons.py` and executed it, which is why we get the report of the hexagon and square areas.
+We can see that the `import` directive loaded the code in `polygons.py` and executed it, which is why we get the report of the various polygon attributes.
 
 Generally, when we place `print` statements in our modules like we have at the end of `polygons.py`, we don't want that code to execute when the module is imported. We could delete the code, but it's kind of nice to have the easy test of entering `python polygons.py` and getting that printout to confirm that everything is working correctly. No, it's not a full test suite, but it is a quick confirmation.
 
-Python's way to have the best of both worlds is to check the `__name__` attribute. If we execute the module directly, `__name__` will have a value of `'__main__'`. If we import the module `__name__` will have the name of the module. So our edit is pretty easy. We wrap those last five lines within an `if __name__ == '__main__':` block:
+Python's way to have the best of both worlds is to check the `__name__` attribute. If we execute the module directly, `__name__` will have a value of `'__main__'`. If we import the module, `__name__` will have the name of the module. So our edit is pretty easy. We wrap those last few lines within an `if __name__ == '__main__':` block:
 
 ```python
 if __name__ == '__main__':
     hexagon = RegularPolygon(6, 10)
-    print('hexagon: ' + str(hexagon.area))
+    print('hexagon area: ' + str(hexagon.area))
+    print('hexagon name: ' + hexagon.name)
+    print('hexagon angles: ' + str(hexagon.angles))
 
     square = Square(10)
-    print('square: ' + str(square.area))
+    print('square area: ' + str(square.area))
+
+    triangle = EquilateralTriangle(9)
+    print('triangle area: ' + str(triangle.area))
 ```
 
 Now, if we import the module, we won't see the print statements being executed, and by printing the `__name__` attribute we can see why.
