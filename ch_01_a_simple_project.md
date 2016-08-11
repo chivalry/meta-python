@@ -54,7 +54,7 @@ class RegularPolygon(Polygon):
         return (self.apothem * self.perimeter) / 2
 
     @classmethod
-    def angle(self, sides):
+    def angle(self, sides:int):
         angle_sum = 180 * (sides - 2)
         return angle_sum / sides
 

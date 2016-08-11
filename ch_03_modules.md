@@ -68,9 +68,113 @@ Packages (Multi-File Modules)
 The word "package" unfortunately has two distinct meanings in the Python community.
 
 <dl> <dt>Package</dt>
-  <dd>1. A directory of modules that also contains a `__init__.py` file</dd> <dd>2. A published Python library available for easy installation and use</dd> </dl>
+  <dd>1. A directory of modules that also contains a `__init__.py` file</dd>
+  <dd>2. A published Python library available for easy installation and use</dd> </dl>
 
 This book deals with producing the second of those definitions while this chapter deals with creating the first. Both of these definitions are quite entrenched in the Python community, so I doubt that the problem will be resolved any time soon. [Mark Pilgrim][2] uses the term ["multi-file module"][3] when he means the first definition, but this seems awkward, although I don't have a better solution. But finding a different term for the first definition seems wise, since PyPI is short for "Python *Package* Index."
+
+We're going to need to do some design work here. Our existing module has four classes: `Polygon`, `RegularPolygon` (which inherits from `Polygon`), `Square` and `EquilateralTriangle` (both of which inherit from `RegularPolygon`). While there are many ways we could break this up into a multi-file module, our goal will be to make the main parent module `polygons` (plural), with two submodules, `polygon` and `regularpolygon`. We'll place the `Polygon` class in the `polygon` module and the rest in the `regularpolgon` module. Our structure will therefore be something like this.
+
+```
+polygons
+    polygon
+        polygon.py
+    regularpolygon
+        regularpolygon.py
+        square.py
+        equilateraltriangle.py
+```
+
+But, remember, a multi-file module needs to have a `__init__.py` file, and since we have one parent module and two sub-modules, we'll need three different `__init__.py` files.
+
+```
+polygons
+    __init__.py
+    polygon
+        __init__.py
+        polygon.py
+    regularpolygon
+        __init__.py
+        regularpolygon.py
+        square.py
+        equilateraltriangle.py
+```
+
+If, within our project directory we create this folder structure, with blank `__init__.py` files and each of the other files containing their class definitions (with appropriate imports as needed), we have officially created a multi-file module.
+
+Create the above directory and file structure within the existing `polygons` folder and transfer the various class definitions into the appropriate files. We'll get to what each class file needs for `include`s in a moment.
+
+Note that you'll end up with a `polygons` folder *inside* the existing `polygons` folder. The top one will be the " published Python library available for easy installation and use" package folder, the inside one the "directory of modules that also contains a `__init__.py` file" package folder, our multi-file module with sub-modules. The final directory structure will look like this (excluding various utility directories, such as `venv`).
+
+```
+polygons
+    polygons
+        __init__.py
+        polygon
+            __init__.py
+            polygon.py
+        regularpolygon
+            __init__.py
+            regularpolygon.py
+            square.py
+            equilateraltriangle.py
+```
+
+Now let's cover the what our four new files need in `include`s in order to work. `polygon.py` doesn't need anything. Our original `polygons.py` file only had one `include` for the `math` library, and the `polygon.py` file doesn't need that.
+
+Both `regularpolygon.py` and `equilateraltriangle.py` need the `math` library, the first for `tan` and `pi`, the second for `sqrt`. Go ahead and add `import math` to the top of both of them.
+
+But now we need to think things through a bit. The `RegularPolygon` class inherits from `Polygon` and both `Square` and `EquilateralTriangle` inherit from `RegularPolygon`, but these files span two folders, so how do we tell the `regularpolygon.py` file where to find the `Polygon` class?
+
+Python uses a system similar to shell directory structures to indicate the current and parent modules. Just as `.` means the current directory and `..` means the parent directory within a command line shell, Python's import mechanism uses `.` to mean the current module and `..` the parent module.
+
+We have three modules: `polygons` (plural), `polygon` (singular), and `regularpolygon`, the latter two being sub-modules of the first, which is another way of saying that the first is the parent module of the latter two. So to navigate from the `regularpolygon` file to the `Polygon` class, we need to go up one module, then down into the `polygon` module, then into the `polygon` file/module. Add this below your `import math` in `regularpolygon.py`:
+
+```python
+from ..polygon.polygon import Polygon
+```
+
+Similarly, both the `Square` and `EquilateralTriangle` classes inherit from `RegularPolygon`, which is in the `regularpolygon.py` file. In this case we go to the *current* module (indicated by a `.`), and from there into the `regularpolygon` module/file. Add this line to both `square.py` and `equilateraltriangle.py`:
+
+```python
+from .regularpolygon import RegularPolygon
+```
+
+Note that we could have used `from . import regularpolygon.RegularPolygon`, but we would have to have then changed our class definition to inherit from `regularpolygon.RegularPolygon`, as in `class Square(regularpolygon.RegularPolygon)`. With the way we've done it we were able to copy and paste the code from our original file.
+
+At this point we don't need our original `polygons.py` file. All of the code that was originally in it has been moved to our four class files. So go ahead and delete it, but there is one feature that file gave us which we no longer have.
+
+Our assumption at this point is that we started with a Python script that we found useful and are moving toward publishing it on PyPI. Such small scripts often don't have testing built in other than what I showed with `if __name__…`. Eventually we'll add test suites to this, but in the meantime it would be nice to have a script that will load the new multi-file module and just output some printouts like our original did.
+
+Create a `test.py` in our top-level `polygons` folder (i.e., at the same level `polygons.py` used to be) and give it the following content.
+
+```python
+from polygons.polygon.polygon import Polygon
+from polygons.regularpolygon.regularpolygon import RegularPolygon
+from polygons.regularpolygon.square import Square
+from polygons.regularpolygon.equilateraltriangle import EquilateralTriangle
+
+poly = Polygon(5, [3, 4, 5, 4, 6], [100, 110, 120, 130, 80])
+print('poly name: ' + poly.name)
+print('poly perimiter: ' + str(poly.perimeter))
+
+hexagon = RegularPolygon(6, 10)
+print('hexagon area: ' + str(hexagon.area))
+print('hexagon name: ' + hexagon.name)
+print('hexagon angles: ' + str(hexagon.angles))
+
+print('square area: ' + str(Square(10).area))
+
+print('triangle area: ' + str(EquilateralTriangle(9).area))
+```
+
+We now have a complete multi-file module which our `test.py` file confirms works to give us the same functionality as our original script, but those `import`s sure are ugly. Let's take care of that next.
+
+Cleaning Up the Interface
+=========================
+
+I'm rewriting this
+==================
 
 So, "a directory of modules that also contains a `__init__.py` file." Let's pretend that `polygons.py` is much larger, with more than just two simple classes. That would move us to break that file up into multiple files, perhaps one with each class.
 
