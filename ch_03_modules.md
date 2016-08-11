@@ -177,7 +177,7 @@ We now have a complete multi-file module which our `test.py` file confirms works
 Cleaning Up the Interface
 =========================
 
-I've repeated read that leaving `__init__.py` blank is a standard practice, and one can get things to work programmatically by doing so, but I consider the default interface into the module to be ugly, and the only way to get around that is to place some code in our various `__init__.py` files. The `import`s that navigate the module path above (i.e., `from polygons.polygon.polygon import Polygon`) are rather difficult to read and prone to error when typing. Ideally we'd like our module to have the following features:
+I've repeatedly read that leaving `__init__.py` blank is a standard practice, and one can get things to work programmatically by doing so, but I consider the default interface into the module to be ugly, and the only way to get around that is to place some code in our various `__init__.py` files. The `import`s that navigate the module path above (i.e., `from polygons.polygon.polygon import Polygon`) are rather difficult to read and prone to error when typing. Ideally we'd like our module to have the following features:
 
 - `import polygons` gives us access to all of the submodules with their classes.
 - `import polygons` also allows us to refer to the classes by `module.submodule.Class`, without the extra reference to the file.
@@ -196,30 +196,18 @@ Hello from __init__.py
 >>> 
 ```
 
-I'm rewriting this
-==================
-
-Cleaning Up our Multi-File Module
----------------------------------
-
-We've got a bit of ugliness with our first translation from module to multi-file module.
-
-- `import polygons` no longer gives us access to the actual code we want.
-- Getting access to the `RegularPolygon` or `Square` classes requires that we use `from polygon import <class>`.
-- Creating instances of our `RegularPolygon and `Square` classes requires some needless reference to the individual module in which they reside.
-- Using `from polygons import * ` should provide direct access to the `RegularPolygon` and `Square` classes.
-
-We want to be able to say `import polygons` and immediately be able to do things like `square = polygons.Square(4)`, or `from polygons import square` and have `square = Square(4)` available to us. We accomplish this by giving `__init__.py` some content.
-
-When we import a multi-file module, we're providing the name of the folder that contains the individual modules.
-
-> REF: http://www.diveintopython3.net/packaging.html
-> REF: http://docs.python-guide.org/en/latest/shipping/packaging/
-> REF: http://docs.python-guide.org/en/latest/writing/structure/
-> REF: http://mikegrouchy.com/blog/2012/05/be-pythonic-__init__py.html
+Alternative Paths
+=================
 
 [Next: Testing][1]
 
 [1]: ch_04_testing.md 'Chapter 4: Testing'
 [2]: https://en.wikipedia.org/wiki/Mark_Pilgrim 'Mark Pilgrim on Wikipedia'
 [3]: http://www.diveintopython3.net/case-study-porting-chardet-to-python-3.html#multifile-modules 'A Short Digression Into Multi-File Modules'
+
+<!--
+REF: http://www.diveintopython3.net/packaging.html
+REF: http://docs.python-guide.org/en/latest/shipping/packaging/
+REF: http://docs.python-guide.org/en/latest/writing/structure/
+REF: http://mikegrouchy.com/blog/2012/05/be-pythonic-__init__py.html
+-->
