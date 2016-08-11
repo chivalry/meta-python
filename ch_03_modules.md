@@ -68,8 +68,7 @@ Packages (Multi-File Modules)
 The word "package" unfortunately has two distinct meanings in the Python community.
 
 <dl> <dt>Package</dt>
-  <dd>1. A directory of modules that also contains a `__init__.py` file</dd>
-  <dd>2. A published Python library available for easy installation and use</dd> </dl>
+  <dd>1. A directory of modules that also contains a `__init__.py` file</dd> <dd>2. A published Python library available for easy installation and use</dd> </dl>
 
 This book deals with producing the second of those definitions while this chapter deals with creating the first. Both of these definitions are quite entrenched in the Python community, so I doubt that the problem will be resolved any time soon. [Mark Pilgrim][2] uses the term ["multi-file module"][3] when he means the first definition, but this seems awkward, although I don't have a better solution. But finding a different term for the first definition seems wise, since PyPI is short for "Python *Package* Index."
 
