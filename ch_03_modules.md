@@ -3,7 +3,7 @@ Modules (and Packages)
 
 In simplest terms, a Python module is some code that can be loaded by Python and made available to other Python code. Our `polygons.py` file is already making use of a standard module, `math`, to gain access to the `tan` and `sqrt` functions and `pi` property.
 
-Strictly speaking, any Python file is a module. You can confirm this for yourself by opening the Python interpreter while in the `polygon` directory for the project.
+Strictly speaking, any Python file is a module. You can confirm this for yourself by opening the Python interpreter while in the project directory.
 
 ```
 ~ $ cd polygons
@@ -21,7 +21,7 @@ triangle area: 35.074028853269766
 polygons $  
 ```
 
-> Note: Even if you're on macOS, your shell prompt may look a bit different from mine. I've customized by shell prompt to insert a blank line after each command as I find it easier to read. In case you're interested in how I did this, I have the following line in `~/.bash_profile`: `PS1="\n\W \$ "`. Once the virtual environment is activated, it temporarily edits the prompt to place the name of the virtual environment before the default prompt, so that while the virtual environment is active, `echo $PS1` returns `(venv) \n\w $ ` (`echo`ing the variable doesn't escape the `$`). This only happens for the current shell instance (so you won't see the different prompt if you create a new shell) and until you `deactivate` the virtual environment or close the current session.
+> Note: Even if you're on macOS, your shell prompt may look a bit different from mine. I've customized my shell prompt to insert a blank line after each command as I find it easier to read. In case you're interested in how I did this, I have the following line in `~/.bash_profile`: `PS1="\n\W \$ "`. Once the virtual environment is activated, it temporarily edits the prompt to place the name of the virtual environment before the default prompt, so that while the virtual environment is active, `echo $PS1` returns `(venv) \n\w $ ` (`echo`ing the variable doesn't escape the `$`). This only happens for the current shell instance (so you won't see the different prompt if you create a new shell) and until you `deactivate` the virtual environment or close the current session.
 
 <!-- separate block quotes -->
 > Tip: Actually, I lied. My default shell prompt is `\n\[\e[34m\]\W\[\e[m\] \$`. Those ugly codes colorize the working directory name to a dark blue, making it even easier to separate each command in the window. I used [EzPrompt][4] to help me figure out what those codes should be.
@@ -74,9 +74,9 @@ The word "package" unfortunately has two distinct meanings in the Python communi
   <dd>1. A directory of modules that also contains a `__init__.py` file</dd>
   <dd>2. A published Python library available for easy installation and use</dd> </dl>
 
-This book deals with producing the second of those definitions while this chapter deals with creating the first. Both of these definitions are quite entrenched in the Python community, so I doubt that the problem will be resolved any time soon. [Mark Pilgrim][2] uses the term ["multi-file module"][3] when he means the first definition, but this seems awkward, although I don't have a better solution. But finding a different term for the first definition seems wise, since PyPI is short for "Python *Package* Index."
+This book deals with producing the second of those definitions while this chapter deals with creating the first. Both of these definitions are quite entrenched in the Python community, so I doubt that the problem will be resolved any time soon. [Mark Pilgrim][2] uses the term ["multi-file module"][3] when he means the first definition, and while this seems awkward, I don't have a better solution. Finding a different term for the first definition seems wise, since PyPI is short for "Python *Package* Index."
 
-We're going to need to do some design work here. Our existing module has four classes: `Polygon`, `RegularPolygon` (which inherits from `Polygon`), `Square` and `EquilateralTriangle` (both of which inherit from `RegularPolygon`). While there are many ways we could break this up into a multi-file module, our goal will be to make the main parent module `polygons` (plural), with two submodules, `polygon` and `regularpolygon`. We'll place the `Polygon` class in the `polygon` module and the rest in the `regularpolgon` module. Our structure will therefore be something like this.
+We're going to need to do some design work first. Our existing module has four classes: `Polygon`, `RegularPolygon` (which inherits from `Polygon`), `Square` and `EquilateralTriangle` (both of which inherit from `RegularPolygon`). While there are many ways we could break this up into a multi-file module, our goal will be to make the main parent module `polygons` (plural), with two submodules, `polygon` and `regularpolygon`. We'll place the `Polygon` class in the `polygon` module and the rest in the `regularpolgon` module. Our structure will therefore be something like this.
 
 ```
 polygons
@@ -107,7 +107,7 @@ If, within our project directory we create this folder structure, with blank `__
 
 Create the above directory and file structure within the existing `polygons` folder and transfer the various class definitions into the appropriate files. We'll get to what each class file needs for `include`s in a moment.
 
-Note that you'll end up with a `polygons` folder *inside* the existing `polygons` folder. The top one will be the " published Python library available for easy installation and use" package folder, the inside one the "directory of modules that also contains a `__init__.py` file" package folder, our multi-file module with sub-modules. The final directory structure will look like this (excluding various utility directories, such as `venv`).
+Note that you'll end up with a `polygons` folder *inside* the existing `polygons` folder. The top one will be the " published Python library available for easy installation and use" package folder, the inside one the "directory of modules that also contains a `__init__.py` file" package folder, our multi-file module with sub-modules. The final directory structure will look like this.
 
 ```
 polygons
@@ -121,17 +121,20 @@ polygons
             regularpolygon.py
             square.py
             equilateraltriangle.py
+    README.md
+    .git
+    venv
 ```
 
-Now let's cover the what our four new files need in `include`s in order to work. `polygon.py` doesn't need anything. Our original `polygons.py` file only had one `include` for the `math` library, and the `polygon.py` file doesn't need that.
+Now let's cover the what our four new files need to `include` in order to work. `polygon.py` doesn't need anything. Our original `polygons.py` file only had one `include` for the `math` library, and the `polygon.py` file doesn't need that.
 
 Both `regularpolygon.py` and `equilateraltriangle.py` need the `math` library, the first for `tan` and `pi`, the second for `sqrt`. Go ahead and add `import math` to the top of both of them.
 
 But now we need to think things through a bit. The `RegularPolygon` class inherits from `Polygon` and both `Square` and `EquilateralTriangle` inherit from `RegularPolygon`, but these files span two folders, so how do we tell the `regularpolygon.py` file where to find the `Polygon` class?
 
-Python uses a system similar to shell directory structures to indicate the current and parent modules. Just as `.` means the current directory and `..` means the parent directory within a command line shell, Python's import mechanism uses `.` to mean the current module and `..` the parent module. This dot notation is called the "relative namespace."
+Python uses a system similar to shell directory structures to indicate the current and parent modules. Just as `.` means the current directory and `..` means the parent directory within a command line shell, Python's import mechanism uses `.` to mean the current module and `..` the parent module. This dot notation is called the __relative namespace__.
 
-We have three modules: `polygons` (plural), `polygon` (singular), and `regularpolygon`, the latter two being sub-modules of the first, which is another way of saying that the first is the parent module of the latter two. So to navigate from the `regularpolygon` file to the `Polygon` class, we need to go up one module, then down into the `polygon` module, then into the `polygon` file/module. Add this below your `import math` in `regularpolygon.py`:
+We have three multi-file modules: `polygons` (plural), `polygon` (singular), and `regularpolygon`, the latter two being sub-modules of the first, which is another way of saying that the first is the parent module of the latter two. So to navigate from the `regularpolygon` file to the `Polygon` class, we need to go up one module, then down into the `polygon` multi-file module, then into the `polygon` single-file module. Add this below your `import math` in `regularpolygon.py`:
 
 ```python
 from ..polygon.polygon import Polygon
@@ -139,15 +142,15 @@ from ..polygon.polygon import Polygon
 
 You do not *have* to use relative namespaces. We could have used `from polygons.polygon.polygon import Polygon`, but doing so makes the structure more fragile. Should you ever decide later that the top-level module should be named something other than `polygons`, you'd then need to change all of the internal references to it that you've hardcoded.
 
-Similarly, both the `Square` and `EquilateralTriangle` classes inherit from `RegularPolygon`, which is in the `regularpolygon.py` file. In this case we go to the *current* module (indicated by a `.`), and from there into the `regularpolygon` module/file. Add this line to both `square.py` and `equilateraltriangle.py`:
+Similarly, both the `Square` and `EquilateralTriangle` classes inherit from `RegularPolygon`, which is in the `regularpolygon.py` file. In this case we go to the *current* module (indicated by a `.`), and from there into the `regularpolygon` single-file module. Add this line to both `square.py` and `equilateraltriangle.py`:
 
 ```python
 from .regularpolygon import RegularPolygon
 ```
 
-Note that we could have used `from . import regularpolygon.RegularPolygon`, but we would have to have then changed our class definition to inherit from `regularpolygon.RegularPolygon`, as in `class Square(regularpolygon.RegularPolygon)`. With the way we've done it we were able to copy and paste the code from our original file.
+Note that we could have used `from . import regularpolygon.RegularPolygon`, but we would have to have then changed our class definition to inherit from `regularpolygon.RegularPolygon`, as in `class Square(regularpolygon.RegularPolygon):`. With the way we've done it we were able to copy and paste the code from our original file.
 
-At this point we don't need our original `polygons.py` file. All of the code that was originally in it has been moved to our four class files. So go ahead and delete it, but there is one feature that file gave us which we no longer have.
+At this point we don't need our original `polygons.py` file. All of the class definition code that was originally in it has been moved to our four class files. So go ahead and delete it, but there is one feature that file gave us which we no longer have.
 
 Our assumption at this point is that we started with a Python script that we found useful and are moving toward publishing it on PyPI. Such small scripts often don't have testing built in other than what I showed with `if __name__…`. Eventually we'll add test suites to this, but in the meantime it would be nice to have a script that will load the new multi-file module and just output some printouts like our original did.
 
@@ -173,7 +176,9 @@ print('square area: ' + str(Square(10).area))
 print('triangle area: ' + str(EquilateralTriangle(9).area))
 ```
 
-You may wonder why I didn't place these tests within each file's `if __name__…` block as I did with the original script. The reason is the relative namespaces we used above. Relative namespace only work when a file within a larger multi-file module is executed directly. Go ahead and try entering something like `python polygons/regularpolygon/square.py`. You'll get an import error because we're not using that file as part of the larger multi-file module and therefore the relative namespace won't work.
+You may wonder why I didn't place these tests within each class file's `if __name__…` block as I did with the original script. The reason is the relative namespaces we used above. Relative namespace only work when a file within a larger multi-file module is executed directly. Go ahead and try entering something like `python polygons/regularpolygon/square.py`. You'll get an import error because we're not using that file as part of the larger multi-file module and therefore the relative namespace won't work.
+
+> Note: You can directly execute individual files within a multi-file module, but you have pass the Python interpreter the `-m` option, which says to execute a library module as a script, and use a module path instead of a file path, as in `python -m polygons.regularpolygon.square`.
 
 We now have a complete multi-file module which our `test.py` file confirms works to give us the same functionality as our original script, but those `import`s sure are ugly. Let's take care of that next.
 
@@ -205,7 +210,7 @@ If you followed the above experiment, remove the line from `polygons/__init__.py
 from .polygon import Polygon
 ```
 
-This line says, "When loading the `polygon` module (because the line is in `polygons/polygon/__init__.py`), within that module look for a submodule called `polygon` (which it will find because this folder contains the file `polygon.py`) and load the `Polygon` name from it." The net effect is that when the `polygon` submodule is loaded, we bypass the filename of the `Polygon` class when referencing it.
+This line says, "When loading the `polygon` multi-file module (because the line is in `polygons/polygon/__init__.py`), within that module look for a submodule called `polygon` (which it will find because this folder contains the file `polygon.py`) and load the `Polygon` name from it." The net effect is that when the `polygon` submodule is loaded, we bypass the filename of the `Polygon` class when referencing it.
 
 You can probably guess the contents of `polygons/regularpolygon/__init__.py`, but here it is for reference sake:
 
@@ -222,7 +227,7 @@ from . import polygon
 from . import regularpolygon
 ```
 
-In English, the first lines says, "When loading the `polygons` module (because this code is within `polygons/__init__.py`) load the `polygon` submodule (in this case, a folder with its own `__init__.py` file)."
+In English, the first lines says, "When loading the `polygons` multi-file module (because this code is within `polygons/__init__.py`) load the `polygon` submodule (in this case, a folder with its own `__init__.py` file)."
 
 At this point you could enter the Python interpreter and get immediate access to the entire module with `import polygons` and gain easier syntactical access.
 
@@ -250,6 +255,15 @@ Our English translation would be, "When the entire namespace of this module is r
 >>> print(s.area)
 100
 >>>
+```
+
+Now that we've changed the interface into our multi-file module, our `test.py` file is broken. Fix it by changing the first four lines.
+
+```python
+from polygons.polygon import Polygon
+from polygons.regularpolygon import RegularPolygon
+from polygons.regularpolygon import Square
+from polygons.regularpolygon import EquilateralTriangle
 ```
 
 Alternative Paths
