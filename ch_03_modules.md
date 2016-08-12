@@ -21,7 +21,10 @@ triangle area: 35.074028853269766
 polygons $  
 ```
 
-> Note: Even if you're on macOS, your shell prompt may look a bit different from mine. I've customized by shell prompt to insert a blank line after each command as I find it easier to read. In case you're interested in how I did this, I have the following line in `~/.bash_profile`: `PS1="\n\W \$ "`. Once the virtual environment is activated, it temporarily edits the prompt to place the name of the virtual environment before the default prompt, so that while the virtual environment is active, `echo $PS1` returns `(venv) \n\w \$ `. This only happens for the current shell instance (so you won't see the different prompt if you create a new shell) and until you `deactivate` the virtual environment or close the current session.
+> Note: Even if you're on macOS, your shell prompt may look a bit different from mine. I've customized by shell prompt to insert a blank line after each command as I find it easier to read. In case you're interested in how I did this, I have the following line in `~/.bash_profile`: `PS1="\n\W \$ "`. Once the virtual environment is activated, it temporarily edits the prompt to place the name of the virtual environment before the default prompt, so that while the virtual environment is active, `echo $PS1` returns `(venv) \n\w $ ` (`echo`ing the variable doesn't escape the `$`). This only happens for the current shell instance (so you won't see the different prompt if you create a new shell) and until you `deactivate` the virtual environment or close the current session.
+
+<!-- separate block quotes -->
+> Tip: Actually, I lied. My default shell prompt is `\n\[\e[34m\]\W\[\e[m\] \$`. Those ugly codes colorize the working directory name to a dark blue, making it even easier to separate each command in the window. I used [EzPrompt][4] to help me figure out what those codes should be.
 
 We can see that the `import` directive loaded the code in `polygons.py` and executed it, which is why we get the report of the various polygon attributes.
 
@@ -252,13 +255,38 @@ Our English translation would be, "When the entire namespace of this module is r
 Alternative Paths
 =================
 
-> NOTE: I may outline one or more alternative ways to structure this package.
+There are other ways we could have organized our multi-file module to make things easier from the interface point of view. We have a separate file for each of our classes, which actually means we have modules three levels deep. Each of the lines below is a module:
+
+```
+polygons
+    polygon
+        polygon.py
+    regularpolygon
+        equilateraltriangle.py
+        regularpolygon.py
+        square.py
+```
+
+Remember, a `.py` file is also a module, which is why our setup before we cleaned up the interface required module paths like `polygons.polygon.polygon.Polygon`.
+
+One way we could have fixed this would be the have a shallower structure.
+
+```
+polygons
+    polygon.py
+    regularpolygon.py
+```
+
+`polygon.py` would contain the `Polygon` class and `regularpolygon.py` would contain the three other classes, allowing, without the imports we placed in our various `__init__.py` files, module paths like `polygons.polygon.Polygon`, which is where we ended up with in the other structure.
+
+The reason I made things a bit harder on us is that, for larger multi-file modules, it's going to make organizational sense for us to break our classes into individual files. For something as small as this, we could safely combine multiple classes into a single file, but if we hadn't gone through this exercise of breaking them up, we wouldn't have learned as deeply and wouldn't be prepared for more complicated modules.
 
 [Next: Testing][1]
 
 [1]: ch_04_testing.md 'Chapter 4: Testing'
 [2]: https://en.wikipedia.org/wiki/Mark_Pilgrim 'Mark Pilgrim on Wikipedia'
 [3]: http://www.diveintopython3.net/case-study-porting-chardet-to-python-3.html#multifile-modules 'A Short Digression Into Multi-File Modules'
+[4]: http://ezprompt.net/ 'EzPrompt'
 
 <!--
 REF: http://www.diveintopython3.net/packaging.html
