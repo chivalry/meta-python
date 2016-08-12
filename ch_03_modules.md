@@ -196,8 +196,63 @@ Hello from __init__.py
 >>> 
 ```
 
+If you followed the above experiment, remove the line from `polygons/__init__.py`. We're going to go from the inside out with with, starting with our `polygons.polygon` module. Edit `polygons/polygon/__init__.py` to have a single line:
+
+```python
+from .polygon import Polygon
+```
+
+This line says, "When loading the `polygon` module (because the line is in `polygons/polygon/__init__.py`), within that module look for a submodule called `polygon` (which it will find because this folder contains the file `polygon.py`) and load the `Polygon` name from it." The net effect is that when the `polygon` submodule is loaded, we bypass the filename of the `Polygon` class when referencing it.
+
+You can probably guess the contents of `polygons/regularpolygon/__init__.py`, but here it is for reference sake:
+
+```python
+from .regularpolygon import RegularPolygon
+from .square import Square
+from .equilateraltriangle import EquilateralTriangle
+```
+
+Moving up one level, we turn to `polygons/__init__.py`. Our first order of business will be to make it such that loading the `polygons` parent module automatically also loads the two submodules, which is done with the following:
+
+```python
+from . import polygon
+from . import regularpolygon
+```
+
+In English, the first lines says, "When loading the `polygons` module (because this code is within `polygons/__init__.py`) load the `polygon` submodule (in this case, a folder with its own `__init__.py` file)."
+
+At this point you could enter the Python interpreter and get immediate access to the entire module with `import polygons` and gain easier syntactical access.
+
+```
+>>> import polygons
+>>> s = polygons.regularpolygon.Square(13)
+>>> print(s.perimeter)
+52
+>>>
+```
+
+We've now only one goal remaining to make the interface into our module easier. Although it's officially discouraged, developers expect something like `from polygons import *` to work, and at this point it won't, or at least not quite how we would expect.
+
+If you again enter the Python interpreter and enter `from polygons import *`, you will get access to all of the classes, but you'll need to reference their full module path, as in `s = polygons.regularpolygon.Square(9)`. What we want is for `from polygons import *` to remove that top level, so we can say something like `s = regularpolygon.Square(9)`. This is accomplished with the `__all__` variable, which specifies which submodules should be imported when the user requests, well, all of them. Add the following line to `polygons/__init__.py`:
+
+```python
+__all__ = ['polygon', 'regularpolygon']
+```
+
+Our English translation would be, "When the entire namespace of this module is requested, load the `polygon` and `regularpolygon` modules." Opening our Python interpreter will confirm that this is working.
+
+```
+>>> from polygons import *
+>>> s = regularpolygon.Square(10)
+>>> print(s.area)
+100
+>>>
+```
+
 Alternative Paths
 =================
+
+> NOTE: I may outline one or more alternative ways to structure this package.
 
 [Next: Testing][1]
 
