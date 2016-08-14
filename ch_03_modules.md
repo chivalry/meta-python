@@ -3,6 +3,8 @@ Modules (and Packages)
 
 In simplest terms, a Python module is some code that can be loaded by Python and made available to other Python code. Our `polygons.py` file is already making use of a standard module, `math`, to gain access to the `tan` and `sqrt` functions and `pi` property.
 
+> Note: While researching this, I read dozens of web references to creating modules and multi-file modules, and couldn't possibly list them all here. But the one I found *most* useful was the [Modules and Packages chapter][5] from the [third edition of Python Cookbook][6] by David Beazley and Brian K. Jones.
+
 Strictly speaking, any Python file is a module. You can confirm this for yourself by opening the Python interpreter while in the project directory.
 
 ```
@@ -301,6 +303,8 @@ The reason I made things a bit harder on us is that, for larger multi-file modul
 [2]: https://en.wikipedia.org/wiki/Mark_Pilgrim 'Mark Pilgrim on Wikipedia'
 [3]: http://www.diveintopython3.net/case-study-porting-chardet-to-python-3.html#multifile-modules 'A Short Digression Into Multi-File Modules'
 [4]: http://ezprompt.net/ 'EzPrompt'
+[5]: http://chimera.labs.oreilly.com/books/1230000000393/ch10.html 'Chapter 10. Modules and Packages'
+[6]: http://chimera.labs.oreilly.com/books/1230000000393 'Python Cookbook, Third Edition'
 
 <!--
 REF: http://www.diveintopython3.net/packaging.html
