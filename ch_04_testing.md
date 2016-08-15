@@ -92,6 +92,41 @@ polygons
 
 For the time being, `test_regularpolygon.py` is going to be empty because all the tests I've thought of for `RegularPolygon` are covered by testing `Polygon`. But I'll keep the file there for no other reason than to remind myself that I haven't *forgotten* about testing `RegularPolygon`.
 
+Making Our Package Available to Out Tests
+-----------------------------------------
+
+Before we can write and use our tests, we have a problem to solve. Our `test_*` files can't see the `polygons` multi-file module because the `tests` and `polygons` directories are at the same level. You can confirm this, if you like, by placing `import polygons` at the top of `test_polygon.py`. When you attempt to perform your tests with `py.test`, you'll receive an `ImportError` message that there is no module named `polygons`.
+
+While there are multiple ways to solve this, such as manually or programmatically editing the `PYTHONPATH` environment variable, we're going to create a minimal `setup.py` file and use `pip` to install our multi-file package in "editable" mode. `pip` can install any package it can access, either locally or over the Internet (such as on GitHub), not just those on the PyPI. If we add a `setup.py` file to our directory structure, `polygons` becomes a package (in the distribution sense). Eventually our `setup.py` file will have many details in it, but for now, it only needs a few lines.
+
+Using `pip` to install a package in editable mode means that the packages is available (within the virtual environment) to any Python file, just like any package installed with `pip`, but changes made to the code of your package are immediately available and don't have to be re-installed.
+
+Create a new file, `setup.py`, in the root level of your project, and give it the following content:
+
+```python
+from setuptools import setup
+
+setup(
+    name='polygons',
+    packages=find_packages()
+)
+```
+
+`setuptools` is a built-in Python module that's integral to dealing with Python packages. We'll become more familiar with it in a future chapter. For now, get into the Terminal and enter the following command while in your project directory:
+
+```bash
+pip install --editable . # "pip install -e ." works as well
+```
+
+Here we're using `.` to indicate the current directory, which is a project directory, so the above line has the effect of installing our `polygons` package in our virtual environment. If you added `import polygons` to `test_polygon.py`, you can now run `py.test` again without getting the `ImportError`. Now that we have this working, feel free to delete the `tests.py` file.
+
+You'll notice that running the command gave us a new folder, `polygons.egg-info`, which is one of the formats available for Python eggs. Python eggs, in turn, are distributed Python packages. For eggs that you install from PyPI, the format would probably be a zip file with a `.egg` extension, but in this case, the editable option of `pip install` created a folder with information about our local package. Feel free to take a look inside the files within `polygons.egg-info`. Just don't make any changes.
+
+On last point before we move forward. Although `pip` can uninstall most packages, editable packages are the exception. If you want to remove the editable install, you'll need to perform two actions:
+
+- Delete the `polygons.egg-info` directory.
+- Remove the path to your project directory from the file found at `venv/lib/python3.5/site-packages/easy-install.pth`.
+
 [Next: Documentation][1]
 
 [1]: ch_05_docs.md 'Chapter 5: Documentation'
@@ -102,4 +137,8 @@ For the time being, `test_regularpolygon.py` is going to be empty because all th
 <!--
 REF: https://schettino72.wordpress.com/2008/01/19/11/
 REF: http://doc.pytest.org/en/latest/example/pythoncollection.html
+REF: https://packaging.python.org/distributing/
+REF: https://setuptools.readthedocs.io/en/latest/setuptools.html#development-mode
+REF: http://www.siafoo.net/article/77#install-vs-develop
+REF: https://wiki.python.org/moin/PythonPackagingTerminology
 -->
