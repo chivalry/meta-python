@@ -7,7 +7,7 @@ We're also not going to go into details about the philosophy unit testing or tes
 
 > TODO: Investigate coverage testing
 
-Python has a long history of available testing frameworks. [`unittest`][4], a unit testing framework based on [JUnit][3] was originally an external module that programmers had to install, but it was integrated as a built-in module some time ago. However, some users consider it, perhaps due to it's Java heritage, to be rather "unpythonic," and I have to agree. It requires quite a bit of boilerplate code to get working, among other limitations, and [pytest][2] was written to overcome these shortcomings, but requires manual installation using `pip`, Python's built-in package manager (which we'll cover in more detail later).
+Python has a long history of available testing frameworks. [`unittest`][4], a unit testing framework based on [JUnit][3], was originally an external module that programmers had to install, but it was integrated as a built-in module some time ago. However, some users consider it, perhaps due to it's Java heritage, to be rather "unpythonic," and I have to agree. It requires quite a bit of boilerplate code to get working, among other limitations, and [pytest][2] was written to overcome these shortcomings, but requires manual installation using `pip`, Python's built-in package manager (which we'll cover in more detail later).
 
 Get back into your Terminal, `cd` into the `polygon` project folder, and make sure your virtual environment is activated.
 
@@ -63,6 +63,8 @@ We'll start out with a list of things that should be true of our polygons, regul
 - The above rule holds for equilateral triangles that have been initiated as `RegularPolygon` objects as well.
 - An equilateral triangle with a side length of $\sqrt[4]{3}$ should have an area of $3/4$.
 
+Obviously, this isn't an exhaustive list of things we should test, but it's a sufficiently large number to give us some tests to integrate that isn't trivial.
+
 More Folder Structure
 ---------------------
 
@@ -89,8 +91,6 @@ polygons
     .git
     venv
 ```
-
-For the time being, `test_regularpolygon.py` is going to be empty because all the tests I've thought of for `RegularPolygon` are covered by testing `Polygon`. But I'll keep the file there for no other reason than to remind myself that I haven't *forgotten* about testing `RegularPolygon`.
 
 Making Our Package Available to Out Tests
 -----------------------------------------
@@ -127,12 +127,178 @@ On last point before we move forward. Although `pip` can uninstall most packages
 - Delete the `polygons.egg-info` directory.
 - Remove the path to your project directory from the file found at `venv/lib/python3.5/site-packages/easy-install.pth`.
 
+Editing `test_polygon.py`
+-------------------------
+
+Since we don't have any argument checking yet, we'll do a little bit of test driven development and write the tests for that first. The testing we're doing here is rather simple, so I suggest that if you're unfamiliar with pytest that you take a look at the [documentation][5] for additional information, such as how tests are discovered and how to create fixtures.
+
+Edit `test_polygon.py` to the following.
+
+```python
+from polygons.polygon import Polygon
+import pytest
+
+def test_side_requires_int():
+    with pytest.raises(ValueError):
+        Polygon(3.14, [5, 5, 5], [60, 60, 60])
+
+def test_lengths_requires_list():
+    with pytest.raises(ValueError):
+        Polygon(3, 5, [60, 60, 60])
+
+def test_angles_requires_list():
+    with pytest.raises(ValueError):
+        Polygon(3, [5, 5, 5], 1)
+
+def test_length_count_requires_sides_value():
+    with pytest.raises(ValueError):
+        Polygon(3, [5, 5, 5, 5], [60, 60, 60])
+
+def test_angles_count_requires_sides_value():
+    with pytest.raises(ValueError):
+        Polygon(3, [5, 5, 5], [60, 60])
+
+def test_lengths_must_be_numeric():
+    with pytest.raises(ValueError):
+        Polygon(3, ['5', 5, 5], [60, 60, 60])
+
+def test_angles_must_be_numeric():
+    with pytest.raises(ValueError):
+        Polygon(3, [1, 2, 3], ['60', 60, 60])
+
+def test_angles_must_sum_correctly():
+    with pytest.raises(ValueError):
+        Polygon(5, [6, 6, 6, 6, 6], [120, 120, 120, 120, 120])
+
+def test_lengths_must_be_positive():
+    with pytest.raises(ValueError):
+        Polygon(3, [0, 5, 5], [60, 60, 60])
+
+def test_angles_must_be_positive():
+    with pytest.raises(ValueError):
+        Polygon(3, [5, 5, 5], [0, 60, 60])
+```
+
+If you run `py.test` now, you'll get 10 failures because we haven't written any code yet for parameter checking. Here's the updated `polygon.py` to fix all those errors.
+
+```python
+class Polygon:
+    names = {
+            3: 'triangle',
+            4: 'quadrilateral',
+            5: 'pentagon',
+            6: 'hexagon',
+            7: 'heptagon',
+            8: 'octagon',
+            9: 'nonagon',
+            10: 'decagon',
+    }
+
+    def __init__(self, sides:int, lengths:list, angles:list):
+        self.sides = sides
+        self.lengths = lengths
+        self.angles = angles
+        
+        self.confirm_attributes()
+
+    @property
+    def perimeter(self):
+        return sum(self.lengths)
+
+    @property
+    def name(self):
+        return self.names[self.sides]
+
+    def confirm_attributes(self):
+        if (not isinstance(self.sides, int)) and (not self.sides.is_integer()):
+            raise ValueError('sides must be an integer')
+
+        if type(self.lengths) is not list:
+            raise ValueError('lengths must be a list')
+        if len(self.lengths) != self.sides:
+            raise ValueError('lengths count must equal number of sides')
+        if not all(isinstance(length, (int, float)) for length in self.lengths):
+            raise ValueError('lengths must be numeric')
+        if not all(length > 0 for length in self.lengths):
+            raise ValueError('lengths must be positive')
+
+        if type(self.angles) is not list:
+            raise ValueError('angles must be a list')
+        if len(self.angles) != self.sides:
+            raise ValueError('angles count must equal number of sides')
+        if not all(isinstance(angle, (int, float)) for angle in self.angles):
+            raise ValueError('angles must be numeric')
+        if sum(self.angles) != ((self.sides - 2) * 180):
+            raise ValueError('angles must sum correctly')
+        if not all(angle > 0 for angle in self.angles):
+            raise ValueError('angles must be positive')
+```
+
+The only tests needed for `RegularPolygon` are to make sure that it returns an exact square when the number of sides is 4, and to make sure that it uses the equilateral triangle algorithm to calculate that polygon's area. Here's the test code to place into `test_regularpolygon.py`:
+
+```python
+import math
+from polygons.regularpolygon import RegularPolygon
+from polygons.regularpolygon import EquilateralTriangle
+
+def test_square_returns_squared_side_for_area():
+    assert RegularPolygon(4, 5).area == 25
+
+def test_triangle_returns_correct_area():
+    poly_area = RegularPolygon(3, 5).area
+    tri_area = EquilateralTriangle(5).area
+    assert math.isclose(poly_area, tri_area, rel_tol=1e-10)
+```
+
+The second test above is testing that a triangle defined as a `RegularPolygon` object will have the same returned area as that returned by an identically dimensioned `EquilateralTriangle` to within 10 decimal points.
+
+If you run `py.test` after saving the above into `test_regularpolygon.py`, the test will fail because, by default, `RegularPolygon.area` using `math.tan` to compute the area (and returns 25.000000000000004, which, while very *close* to 25, isn't 25), which is necessary for most polygons, but for a square we can just compute the square of a side.
+
+I don't yet know the "pythonic" way to solve this, so until I find a better method, I'm editing `RegularPolygon.area` to read as follows:
+
+```python
+@property
+def area(self):
+    if self.sides == 4:
+        return self.length ** 2
+    else:
+        return (self.apothem * self.perimeter) / 2
+```
+
+For `test_square.py`, we'll just make sure that a few tests ensure we're getting the right perimeter and area.
+
+```python
+from polygons.regularpolygon import Square
+import math
+
+def test_square_perimeter():
+    assert Square(1).perimeter == 4
+    assert Square(5).perimeter == 20
+    assert Square(1.25).perimeter == 5
+
+def test_square_area():
+    assert Square(1).area == 1
+    assert Square(5).area == 25
+    assert math.isclose(Square(1.5).area, 2.25, rel_tol=1e-2)
+```
+
+Finally, `test_equilateraltriangle.py` needs only one test, making sure that for a equilateral triangle of length $sqrt[4]{3}$, the area is $3/4$, again using `math.isclose` to compare `float` values.
+
+```python
+import math
+from polygons.regularpolygon import EquilateralTriangle
+
+def test_equilateral_triangle_area():
+    assert math.isclose(EquilateralTriangle(3 ** (1/4)).area, 3/4, rel_tol=1e-2)
+```
+
 [Next: Documentation][1]
 
 [1]: ch_05_docs.md 'Chapter 5: Documentation'
 [2]: http://doc.pytest.org/en/latest/index.html 'pytest'
 [3]: http://junit.org/junit4/ 'JUnit'
 [4]: https://docs.python.org/3/library/unittest.html 'unittest'
+[5]: http://doc.pytest.org/en/latest/index.html 'pytest'
 
 <!--
 REF: https://schettino72.wordpress.com/2008/01/19/11/
@@ -141,4 +307,5 @@ REF: https://packaging.python.org/distributing/
 REF: https://setuptools.readthedocs.io/en/latest/setuptools.html#development-mode
 REF: http://www.siafoo.net/article/77#install-vs-develop
 REF: https://wiki.python.org/moin/PythonPackagingTerminology
+REF: http://pythontesting.net/framework/pytest/pytest-introduction/
 -->
