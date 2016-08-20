@@ -94,7 +94,7 @@ triangle = EquilateralTriangle(9)
 print('triangle area: ' + str(triangle.area))
 ```
 
-While the above code may seem trivial, I can see someone writing it if they needed to calculate regular polygon areas, well, regularly, and it's complicated enough that we'll be able to use it to create a multi-file module (i.e., package) with sub-modules.. And once the code is written (and tested, to be covered later), perhaps it would be useful to others, so we should package it up as a library. And so that one doesn't have to be a programmer to take advantage of it, create a command line utility and a GUI app using the library.
+While the above code may seem trivial, I can see someone writing it if they needed to calculate regular polygon areas, well, regularly, and it's complicated enough that we'll be able to use it to create a multi-file module (i.e., package) with sub-modules. And once the code is written (and tested, to be covered later), perhaps it would be useful to others, so we should package it up as a library. And so that one doesn't have to be a programmer to take advantage of it, create a command line utility and a GUI app using the library.
 
 [Next: The Python Development Environment][2]
 

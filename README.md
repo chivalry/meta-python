@@ -38,7 +38,7 @@ I think that if you've read this far, most of the above assumptions are true, bu
     - [The Hitchhiker's Guide to Python][3]: Here you'll find more meta Python, and a primary resource for this project.
     - [Think Python][10]: This is the one I gave my son when he asked to learn programming. If you're new to programming in general, this one will teach Python and general programming at the same time.
     - [A Byte of Python][11]: Another free and well-written introduction to both programming and Python simultaneously.
-- [#python][4] at [freenode.net][5]: Very helpful and very smart Python people hang out here to assist you. I use [Colloquey][8] as my IRC client, but there are [many others][9] for all platforms.
+- [#python][4] at [freenode.net][5]: Very helpful and very smart Python people hang out here to assist you. I use [Colloquy][8] as my IRC client, but there are [many others][9] for all platforms.
 - [Stackoverflow][6]: Probably the very best forum for asking programming questions.
 
 Structure
